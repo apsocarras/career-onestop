@@ -1,21 +1,21 @@
 ### Project Overview:
 
-We want to administer this [career services survey](https://www.careeronestop.org/Developers/WebAPI/Occupation/list-occupations-skills-match.aspx) offline using a Qualtrics survey on IPad. 
+We want to administer this [career services survey](https://www.careeronestop.org/Developers/WebAPI/Occupation/list-occupations-skills-match.aspx) offline using a Survey Monkey survey on IPad. 
 
-We need to add the questions from career services into Qualtrics, collect the answers, and export them once online via the career services API integration. The API will then email the survey taker with recommendations for suitable career paths.  
+We need to add the questions from career services into Survey Monkey, collect the answers, and export them once online via the career services API integration. The API will then email the survey taker with recommendations for suitable career paths.  
 
-1. Create a Qualtrics survey
+1. Create a Survey Monkey survey
 
-2. Download the Qualtrics survey to Qualtrics IPad app 
+2. Download the Survey Monkey survey to Survey Monkey IPad app 
   
 3. Collect survey responses offline
 
 4. Export survey responses 
    
    1. **Initial export**
-      * *Option A*: Have a script running on IPad in the background which exports the results (answers + user email) automatically to cloud storage when back online using the Qualtrics API.
+      * *Option A*: Have a script running on IPad in the background which exports the results (answers + user email) automatically to cloud storage when back online using the Survey Monkey API.
       * *Option B*: User manually exports the survey results and drag/drops the file on IPad to a designated storage bucket, with the upload completing once they are back online. 
-        * See if Qualtrics
+        * See if Survey Monkey
    2. **Export to career services**: Host a serverless function which reads the data from this bucket and sends it to career services API
    * <ins>Recommendations</ins>: 
      * Store data in cloud storage intermediary rather than sending directly to career services API. This preserves state for re-tries in case there are any errors, and optionally allows for warehousing (useful for tracking/avoiding repeat submissions and for trend analysis). 
