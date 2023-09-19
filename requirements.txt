@@ -2,4 +2,6 @@ requests
 beautifulsoup4
 pandas 
 jupyterlab
-
+lxml
+flask
+openpyxl
