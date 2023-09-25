@@ -1,15 +1,23 @@
-from flask import Flask, request
+from flask import Flask
+import requests 
+import yaml 
+
+# Avoid Oauth 2.0 setup and temporary long-term credential creation for now 
+with open("api-key.yaml", "r") as file:
+     access_token = yaml.full_load(file)['access-token']
+
+headers = {
+
+    'Authorizaqtion': f'Bearer {access_token}'
+
+}
+
 
 app = Flask(__name__)
 
-@app.route('/auth/callback', methods=['GET'])
-def oauth_callback():
-    # Handle the OAuth2 callback here
-    authorization_code = request.args.get('code')
-    
-    # You can now use the authorization code to obtain an access token from SurveyMonkey
-
-    return f'Authorization Code: {authorization_code}'
+@app.route('/')
+def hello():
+    return 'Hello, World!'
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

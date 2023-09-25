@@ -5,3 +5,4 @@ jupyterlab
 lxml
 flask
 openpyxl
+azure-storage-blob
