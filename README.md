@@ -10,9 +10,9 @@ The previous design for the project assumed the survey would only be delivered o
 
 ### **Architecture (v2)**: 
 
-To allow respondents to also take the quiz themselves on their own devices, we will need to deploy an app with the SurveyMonkey API and connect it to a webapp of our own. When a survey response is [collected](https://help.surveymonkey.com/en/surveymonkey/send/collector-options/), a webhook will trigger our web app to make a GET request to the SurveyMonkey app for the new response information. Our app will receive the survey answers in JSON from SurveyMonkey, translate/send them in a readable format to the CareerOneStop Skills Matcher API, and email the respondent with job recommendations from the Skills Matcher along with other career resources.
+To allow respondents to also take the quiz themselves on their own devices, we will need to deploy an app with the SurveyMonkey API and connect it to a webapp of our own. When a survey response is [collected](https://help.surveymonkey.com/en/surveymonkey/send/collector-options/), a webhook will trigger our web app to make a GET request to the SurveyMonkey app for the list of responses, filtering for new responses against a SQLite database of responses we've already processed. Our app will reformat and send the answers from each new survey response to the CareerOneStop Skills Matcher API, and email each respondent with job recommendations from the Skills Matcher along with other career resources.
 
-![workflow-diagram-v2](img/workflow_v2.png)
+![workflow-diagram-v2](img/dwdb_skillsurvey_v3.png)
 
 In addition to the career skills questions contained in the Skills Matcher survey, the Survey Monkey survey we're using also asks the following questions: 
 

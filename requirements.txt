@@ -6,3 +6,4 @@ lxml
 flask
 openpyxl
 azure-storage-blob
+email-validator
