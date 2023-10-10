@@ -7,3 +7,4 @@ flask
 openpyxl
 azure-storage-blob
 email-validator
+bs4
