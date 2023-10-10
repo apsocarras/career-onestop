@@ -29,7 +29,7 @@ In addition to the career skills questions contained in the Skills Matcher surve
 ### Links 
 
 **SurveyMonkey**
-* [Official Survey](https://www.surveymonkey.com/r/MSFV98P)
+* *Official Survey* (removed for security)
 
 * [Demo Survey](https://www.surveymonkey.com/r/WBVDKG9) (for development purposes)
 
