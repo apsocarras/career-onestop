@@ -256,54 +256,50 @@ def process_sm_responses(sm_survey_responses) -> list[dict]:
         else: 
             break 
 
-    ## 2.) Filter for new survey responses and survey responses that have valid email addresses
+    ## 2.) Filter for new survey responses (against 'sent'/'processed' tables in database)
     processed_responses = []
     for resp in sm_survey_responses['data']: 
-        if resp['id'] not in placeholder_processed_response_ids and has_valid_email(resp): 
-
+        if resp['id'] not in placeholder_processed_response_ids: # and has_valid_email(resp check_deliverability=False) 
+            # TO-DO: Do the email validation in the actual email sending function 
             resp_dict = {
             'response_id':resp['id'],
             'collector_id':resp['collector_id'], 
             'questions':[] 
             }
 
-            # Add questions information
+            ## Add questions information
             for p in resp['pages']:
                 for q in p['questions']:
 
-                    # Get matching question dictionary from combined_map, based on question type and SM question_id
+                    # Match q to key from combined_map, based on question type and sm question_id
                     question_type = 'non-skills-matcher' if q['id'] in non_skills_matcher_ids else 'skills-matcher'
                     q_map = combined_map[question_type][q['id']] 
 
-                    # Get rest of information from q_map
-                    question_number = {'sm':q_map['question_number']['sm']}
-                    if 'cos' in q_map['question_number'].keys():
-                        question_number['cos'] = q_map['question_number']['cos']
-                    
-                    question_id = {'sm':q_map['question_id']['sm']}
-                    if 'cos' in q_map['question_id'].keys():
-                        question_id['cos'] = q_map['question_id']['cos']
+                    # Match given answers in q['answers'] to answers in q_map['answers']
+                    if q_map['answers'] is not None:
+                        # e.g. q = {'id': '144588883', 'answers': [{'choice_id': '1070603278'}]}
+                        q_map_answer_key = {a['id']['sm']:a for a in q_map['answers']}
+                        
+                        answers = [q_map_answer_key[a['choice_id']] 
+                                for a in q['answers'] if 'choice_id' in a.keys()] \
+                                + [{'id':{'sm':a['other_id']}, 'text':{'sm':a['text']}} 
+                                for a in q['answers'] if 'other_id' in a.keys()] 
 
-                    if question_type == 'skills-matcher': 
-                        answers = [{'sm':a['choice_id'],
-                                    'cos':q_map['answer_ids'][a['choice_id']]} for a in q['answers']]
-                    else: 
-                        answers = [{'sm':a} for a in q['answers']]
-                    # answers = []
-                    # for a in q['answers']: 
-                        # if 'choice_id' in a.keys(): 
-                        #     answers.append({'sm':a['choice_id']})
-                        # else: 
-                        #     answers.append({'sm':a})
+                    else:
+                        # e.g. q = {'id': '143922396', 'answers': [{'tag_data': [], 'text': '19977'}]}
+                        answers = q['answers']
 
-                    resp_dict['questions'].append({'question_id':question_id, 
-                                                   'question_number':question_number, 
-                                                   'question_type':question_type, 
-                                                   'answers':answers})
+                    resp_dict['questions'].append({'question_id':q_map['question_id'], 
+                                                'page_number':q_map['page_number'],
+                                                'question_number':q_map['question_number'], 
+                                                'question_family': q_map['question_family'],
+                                                'question_text':q_map['question_text'],
+                                                'question_type':question_type, 
+                                                'answers':answers})
                                                 
-            processed_responses.append(resp_dict)
-
-    ## -- 3. Write (raw) new responses to processing table in DB (TO-DO)  -- ## 
+        processed_responses.append(resp_dict)    
+        
+    ## -- 3. Write (raw) new responses to 'processing' table in DB (TO-DO)  -- ## 
     # load_to_db(...)
     ## -------------------------------------------------------------------- ## 
 
@@ -315,7 +311,6 @@ def post_cos(processed_sm_responses):
 
     data = load_config()
     COS_DATA = data['cos']
-
 
     cos_data = []
     for resp in processed_sm_responses:
