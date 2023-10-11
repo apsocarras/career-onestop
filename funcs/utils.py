@@ -44,9 +44,10 @@ def log_azure(log_data, log_file=log_file):
         blob_client.upload_blob(log_data, blob_type=BlobType.AppendBlob, length=len(log_data), offset=offset)
 
 ## ----------------------------------------------------------------------------- ## 
+# Generic Utils # 
 
 ## GET request wrapper
-def request(method:str, url:str, headers:dict, json=None, max_attempts=2):
+def request(method:str, url:str, headers:dict, json=None, params=None, max_attempts=2):
     """Wrapper for request with logging and retries."""
 
     attempts = 0
@@ -54,9 +55,9 @@ def request(method:str, url:str, headers:dict, json=None, max_attempts=2):
         try:
             start_time = time.time()
             if method == "GET":
-                response = requests.get(url, headers=headers)
+                response = requests.get(url, headers=headers, params=params)
             elif method == "POST":
-                response = requests.post(url, json=json, headers=headers)
+                response = requests.post(url, json=json, headers=headers, params=params)
             end_time = time.time()
             
             log_data = {
@@ -104,9 +105,6 @@ def clean_field_text(text):
     
     return clean_text
 
-
-
-
 ## Load JSON -- handles/logs any errors gracefully and returns None: 
 def load_json(file_path:str): 
     """Wrapper to load a JSON file and check if it exists"""
@@ -126,3 +124,43 @@ def load_to_db():
 ## Query DB 
 def query_db(): 
     """Wrapper to query DB"""
+
+
+## ----------------------------------------------------------------------------- ## 
+#  Small helper functions specific to the script 
+
+def load_config(): 
+    """Load information from config file"""
+    with open("api-key.yaml", "r") as file:
+        data = yaml.full_load(file)
+    return data 
+
+def has_valid_email(sm_survey_response:dict, check_deliverability=False) -> bool: 
+    """Check if SM survey response includes a valid email address in the email question.
+    Use to skip a response in process_sm_responses().
+
+    Args: 
+
+    sm_survey_response (dict): The Survey Response object from Survey monkey 
+
+    email_question_id (str): The question id for the email question in the SM answer key. 
+
+    """
+    # Identify the question_id of the email question in the answer key  
+    email_question_id = '145869785' # [q['question_id'] for q in combined_map['non-skills-matcher'] 
+                                    # if 'email' in q['question_text'].lower()][0]
+    
+    # Check if sm_response contains the email question (if any question is ommitted, the respondent left it blank)      
+    questions = [q for p in sm_survey_response['pages'] for q in p['questions']]
+    if not any(q['id'] == email_question_id for q in questions): 
+        return False 
+    
+    # Validate email if one was provided 
+    email_address = [q for q in questions if q['id'] == email_question_id][0]['answers'][0]['text']
+    try:
+        validate_email(email_address, check_deliverability=check_deliverability)
+        return True
+    except EmailNotValidError as e:
+        log_azure(f"WARNING: {sm_survey_response['id']} contains invalid email address: {email_address} -- {str(e)}. Skipping.")
+        ## TO-DO: Add further processing logic and logs based on error message -- e.g. 'The email address contains invalid characters before the @-sign'  
+        return False 
