@@ -164,3 +164,7 @@ def has_valid_email(sm_survey_response:dict, check_deliverability=False) -> bool
         log_azure(f"WARNING: {sm_survey_response['id']} contains invalid email address: {email_address} -- {str(e)}. Skipping.")
         ## TO-DO: Add further processing logic and logs based on error message -- e.g. 'The email address contains invalid characters before the @-sign'  
         return False 
+
+def track_api_calls():
+    """Keep track of/log how many calls to the survey monkey API the app has made in a given day.""" 
+    ## TO-DO -- SM API includes this information in the response headers

@@ -167,7 +167,7 @@ def combine_qa_keys(fetch=False) -> dict:
     return combined_map
 
 ## GET all survey responses from Survey monkey API
-def get_sm_survey_responses(**params):
+def get_sm_survey_responses(per_page=100, start_created_at=None, status='completed', sort_by='date_modified', sort_order='DESC',**params):
     """GET 100 most recent survey responses from /surveys/{id}/responses/bulk
 
     -The SM API returns survey responses in pages, up to 100 `per_page`.
@@ -175,16 +175,22 @@ def get_sm_survey_responses(**params):
 
     Args: 
 
-    params (dict): Keyword arguments to pass to the SM API. Some relevant ones which will be given default values in this function: 
+    per_page (int): Number of resources to return per page. Max of 100 allowed per page. 
 
-        per_page (int): Number of resources to return per page. Max of 100 allowed per page. 
-        start_created_at (DateString): Responses started after this date.  e.g. 2023-10-01T02:20:44+00:00
-            I set default for his to 30 days ago. 
-        status (str): Status of the response: completed, partial, overquota, disqualified.
-            'completed': The respondent answered all required questions they saw and clicked Done on the last page of the survey.
-            'partial': The respondent entered at least one answer and clicked Next on at least one survey page, but didn't click Done on the last page of the survey.
-        sort_by (str): Field used to sort returned responses: date_modified
-        sort_order (str): Sort order: ASC or DESC
+    start_created_at (DateString): Only retrieve responses started after this date. e.g. 2023-10-01T02:20:44+00:00
+
+    status (str): Status of the response: completed, partial, overquota, disqualified.
+
+        'completed': The respondent answered all required questions they saw and clicked Done on the last page of the survey.
+        'partial': The respondent entered at least one answer and clicked Next on at least one survey page, but didn't click Done on the last page of the survey.
+
+    sort_by (str): Field used to sort returned responses
+    
+    sort_order (str): Sort order: ASC or DESC
+
+    **params: Can accept other keyword arguments as listed in the SurveyMonkey API 
+        (https://api.surveymonkey.com/v3/docs?shell#api-endpoints-get-surveys-id-responses-bulk)
+
 
     """
 
