@@ -47,17 +47,17 @@ def log_azure(log_data, log_file=log_file):
 # Generic Utils # 
 
 ## GET request wrapper
-def request(method:str, url:str, headers:dict, json=None, params=None, max_attempts=2):
+def request(method:str, url:str, headers:dict, data=None, json=None, params=None, max_retries=2):
     """Wrapper for request with logging and retries."""
 
     attempts = 0
-    while attempts < max_attempts: 
+    while attempts <= max_retries: 
         try:
             start_time = time.time()
             if method == "GET":
                 response = requests.get(url, headers=headers, params=params)
             elif method == "POST":
-                response = requests.post(url, json=json, headers=headers, params=params)
+                response = requests.post(url, json=json, headers=headers, params=params, data=data)
             end_time = time.time()
             
             log_data = {
