@@ -32,19 +32,20 @@ def get_qa_key(api=None, fetch=False) -> dict:
         Note 500 requests/month limit to SM -- if going to use fetch option, may want to only do so periodically.
 
     """
-    data = load_config()
-    SM_DATA = data['sm']['real']
+    data = load_config('../creds/api-key.yaml')
+    SM_DATA = data['sm']['copy-real']
     COS_DATA = data['cos']
 
     # Set SM vs. COS variables
     if api == "sm": 
         url = f"{SM_DATA['base_url']}/details"
         headers = SM_DATA['headers']
-        cached_fp = SM_DATA['survey-details-fp']
+        cached_fp = "../data/real-survey/copy/copy-sm-survey-key.json"
     elif api == "cos":
         url = COS_DATA['url']
         headers = COS_DATA['headers']
-        cached_fp = COS_DATA['survey-details-fp']
+        cached_fp = "../data/real-survey/copy/copy-cos-survey-key.json"
+
     else:
         raise Exception("`api` must be one of `sm` (SurveyMonkey) or `cos` (CareerOneStop)")
     
@@ -194,8 +195,8 @@ def get_sm_survey_responses(per_page=100, start_created_at=None, status='complet
 
     """
 
-    data = load_config()
-    SM_DATA = data['sm']['real']
+    data = load_config('../creds/api-key.yaml')
+    SM_DATA = data['sm']['copy-real']
     url = SM_DATA['base_url'] + f"/responses/bulk"
     
     now = dt.datetime.utcnow()
@@ -302,7 +303,27 @@ def process_sm_responses(sm_survey_responses) -> list[dict]:
                                                 'question_text':q_map['question_text'],
                                                 'question_type':question_type, 
                                                 'answers':answers})
-                                                
+
+            ## Autofill any missing skills matcher questions in the current response
+            current_resp_question_ids = [q['question_id'] for q in resp_dict['questions'] if q['question_type'] == 'skills-matcher']
+            for q_map in list(combined_map['skills-matcher'].values()):
+                if q_map['question_id'] not in current_resp_question_ids:
+
+                    auto_fill_answer = q_map['answers'][0] # Auto fill with the beginner answer
+                    auto_fill_answer['auto_filled'] = True
+
+                    fill_dict = {
+                        'question_id':q_map['question_id'], 
+                        'page_number':q_map['page_number'],
+                        'question_number':q_map['question_number'], 
+                        'question_family': q_map['question_family'],
+                        'question_text':q_map['question_text'],
+                        
+                        'question_type':'skills-matcher', 
+                        'answers':auto_fill_answer
+                    }
+                    resp_dict.append(fill_dict)
+
         processed_responses.append(resp_dict)    
         
     ## -- 3. Write (raw) new responses to 'processing' table in DB (TO-DO)  -- ## 
@@ -311,28 +332,40 @@ def process_sm_responses(sm_survey_responses) -> list[dict]:
 
     return processed_responses
 
+## In a processed response's question/answer list, auto-fill any missing skills matcher questions
+def fill_cos_answers(resp:dict):
+    """In a processed response's question/answer list, auto-fill any missing skills matcher questions."""
+
+
+
 ## POST these processed responses to the COS Skills Survey  
 def post_cos(processed_sm_responses): 
-    """Translate a processed SM survey response to a COS POST object, retrieve COS responses."""
+    """Translate a processed SM survey response to a COS POST object, retrieve COS responses.
+    Fills omitted skills response answers as 'Beginner' before sending to COS API."""
 
-    data = load_config()
+    data = load_config('../creds/api-key.yaml')
     COS_DATA = data['cos']
+
 
     cos_data = []
     for resp in processed_sm_responses:
         
         cos_request = {'SKAValueList':
                     [{'ElementId':q['question_id']['cos'], 
-                      'DataValue':str(q['answers'][0]['cos'])} for q in resp['questions'] 
+                    'DataValue':str(q['answers'][0]['cos'])} for q in resp['questions'] 
                         if q['question_type'] == 'skills-matcher']}
-        
+    
         cos_response = request(method="POST", 
-                             url=COS_DATA['url'],
-                             json=cos_request, 
-                             headers=COS_DATA['headers'])
+                            url=COS_DATA['url'],
+                            json=cos_request, 
+                            headers=COS_DATA['headers'])
         
         cos_data.append({'sm_response_id':resp['response_id'],
-                         'cos_request': cos_request, 
-                         'cos_response':cos_response})
+                        'cos_request': cos_request, 
+                        'cos_response':cos_response})
 
     return cos_data
+
+
+
+## Check for valid email address and 

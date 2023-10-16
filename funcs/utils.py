@@ -129,11 +129,21 @@ def query_db():
 ## ----------------------------------------------------------------------------- ## 
 #  Small helper functions specific to the script 
 
-def load_config(): 
+def load_config(fp:str): 
     """Load information from config file"""
-    with open("api-key.yaml", "r") as file:
+    with open(fp, "r") as file:
         data = yaml.full_load(file)
     return data 
+
+def get_email(sm_survey_response) -> str:
+    """Get email from SurveyMonkey survey response. Returns None if email is not provided"""
+    # Validate email if one was provided
+    questions = [q for p in sm_survey_response['pages'] for q in p['questions']]
+    if not any(q['id'] == '145869785' for q in questions): 
+        return None 
+    email_address = [q for q in questions if q['id'] == email_question_id][0]['answers'][0]['text']
+
+
 
 def has_valid_email(sm_survey_response:dict, check_deliverability=False) -> bool: 
     """Check if SM survey response includes a valid email address in the email question.
