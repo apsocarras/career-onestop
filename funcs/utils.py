@@ -168,3 +168,8 @@ def has_valid_email(sm_survey_response:dict, check_deliverability=False) -> bool
 def track_api_calls():
     """Keep track of/log how many calls to the survey monkey API the app has made in a given day.""" 
     ## TO-DO -- SM API includes this information in the response headers
+
+
+## ----------------------------------------------------------------------------- ## 
+#  Function to send email 
+
