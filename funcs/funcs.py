@@ -139,6 +139,7 @@ def combine_qa_keys(fetch=False) -> dict:
         log_azure(error_text)
         raise Exception(error_text)
 
+    ## Add COS information
     for n in range(len(combined_map['skills-matcher'])): 
         cos_q = cos_key['Skills'][n]
         cos_answer_ids = [{'id':cos_q["DataPoint20"], 'text':cos_q['AnchorFirst']},
@@ -151,7 +152,7 @@ def combine_qa_keys(fetch=False) -> dict:
         combined_map['skills-matcher'][n]['question_number']['cos'] = n + 1 # correcting for 0 index in loop
         combined_map['skills-matcher'][n]['question_text']['cos'] = cos_q['Question']
 
-        # Add cos answer ids and text to answers array; 
+        # Add cos answer ids and text 
         if len(combined_map['skills-matcher'][n]['answers']) != len(cos_answer_ids):
             error_text = f"ERROR: No. of answer options in SM question #{combined_map['skills-matcher'][n]['question_number']['sm']} != number of COS answer levels."
             log_azure(error_text)
@@ -161,7 +162,7 @@ def combine_qa_keys(fetch=False) -> dict:
             combined_map['skills-matcher'][n]['answers'][m]['text']['cos'] = cos_answer_ids[m]['text']
 
     ## Casting question lists to dictionary, with keys being the survey monkey question ids, for easier lookup in translation
-    # Making these lists to start with made the previous COS insertion step easier
+    # Making these lists to start with made the previous iterate/insertion step easier
     combined_map['skills-matcher'] = {q['question_id']['sm']:q for q in combined_map['skills-matcher']}
     combined_map['non-skills-matcher'] = {q['question_id']['sm']:q for q in combined_map['non-skills-matcher']}
 
@@ -308,7 +309,6 @@ def process_sm_responses(sm_survey_responses) -> list[dict]:
 
             ## Autofill any missing questions in the current response
             current_resp_question_ids = [q['question_id']['sm'] for q in resp_dict['questions']]
-            print(current_resp_question_ids)
             for q_map in list(combined_map['non-skills-matcher'].values()) + list(combined_map['skills-matcher'].values()):
                 if q_map['question_id']['sm'] not in current_resp_question_ids:
 
@@ -400,7 +400,6 @@ def create_cos_request_body(resp:dict) -> tuple:
     return cos_request_body
             
 
-
 def post_cos(processed_sm_responses:list[dict]): 
     """Translate processed SM survey responses to COS POST objects, retrieve COS responses.
     Fills omitted skills response answers as 'Beginner' before sending to COS API."""
@@ -420,15 +419,31 @@ def post_cos(processed_sm_responses:list[dict]):
                             url=COS_DATA['url'],
                             json=cos_request, 
                             headers=COS_DATA['headers'])
+            try: 
+                cos_response = cos_response.json()
+            except: 
+                log_azure(f"WARNING: {resp['response_id']}, failed to unpack COS API response JSON ({cos_response.status_code}). Leaving as 'None'.")
+                cos_response = None       
         else: 
-            log_azure(f"WARNING: {resp['id']} contains invalid email address: {email_address} -- {error_message}. Skipping.")
+            log_azure(f"WARNING: {resp['response_id']} contains invalid email address: {email_address} -- {error_message}. Skipping.")
             cos_request = None
             cos_response = None
         
         resp['cos_request'] = cos_request
-        resp['cos_response'] = cos_response.json()
+        resp['cos_response'] = cos_response 
 
     return responses_copy
+
+def send_emails(processed_sm_responses:list[dict]): 
+    """Send emails to respondents"""
+
+    for resp in processed_sm_responses:
+        get_email(resp[])
+
+
+
+
+
 
 
 

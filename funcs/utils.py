@@ -145,18 +145,20 @@ def get_email(processed_response:dict) -> str:
     try: 
         email_address = processed_response['questions'][-1]['answers'][0]['text']
         return email_address
-    except:
-        log_azure(f"INFO: resp {processed_response['id']} is missing email address")
+    except Exception as e:
+        # log_azure(f"INFO: resp {processed_response['response_id']} is missing email address")
         return None
     
-def check_email(email_address=None, check_deliverability=True) -> tuple:
+def check_email(email_address=None, check_deliverability=True) -> tuple[bool,str]:
     """Wrapper to validate email address"""
     if email_address is not None:
         try: 
             validate_email(email_address, check_deliverability=check_deliverability)
             return True, "Valid Email"
         except EmailNotValidError as e: 
-            return False, e
+            return False, str(e)
+    else:
+        return False, "Email Missing (see get_email())"
 
 def load_email_message(): 
     """Load the email introduction message email"""
@@ -165,10 +167,7 @@ def load_email_message():
     with open("email_message_text.txt", "r") as file: 
         text = file.read()
 
-    message_text = """
-    Thank you for participating in our workforce survey about community member job skills, experiences, and interests. 
-    Your inputs will be extremely important as we seek to understand the employment strengths and desires of people from across the state, to make informed recommendations to workforce decision makers about how to improve access to employment for ALL Delawareans. 
-    """
+   
 
 
     message = f'<div style="{message_style}">Your customized top 20 suggestion list is as follows:</div>\n\n{table_html}'
@@ -215,19 +214,20 @@ def Send(subject, EEfrom, fromName, to, bodyHtml, bodyText, isTransactional, api
     })
 
 # Create hyperlinks to job page
-def create_hyperlink(rec:dict) -> str:
+def create_url(job_title:str,onet_code:str ) -> str:
     base_url = "https://www.careeronestop.org/Toolkit/Careers/Occupations/occupation-profile.aspx?"
     parameters = {
-        "keyword": urllib.parse.quote(rec['OccupationTitle']),
+        "keyword": urllib.parse.quote(job_title),
         "location": "US",
         "lang": "en",
-        "onetCode": rec["OnetCode"]
+        "onetCode": onet_code
     }
     url_params = "&".join([f"{key}={value}" for key, value in parameters.items()])
     url = f'{base_url}{url_params}'
-    return f'<a href="{url}">{rec["OccupationTitle"]}</a>'
+    return url 
+    # return f'<a href="{url}">{onet_code}</a>'
 
-def send_email(processed_sm_response:dict): 
+def send_email(processed_sm_response:dict, max_recommendations:10): 
     with open('../creds/api-key.yaml', 'r') as file: 
         data = yaml.full_load(file)['elastic-email']['shared-account']
 
@@ -249,7 +249,7 @@ def send_email(processed_sm_response:dict):
                     'AnnualWages': 'Average Wages (Annual)', 
                     'TypicalEducation': 'Typical Education'
                     }
-    for rec in rec_list:
+    for rec in rec_list[:max_recommendations]:
         # Set occupation title to hyperlink
         rec['OccupationTitle'] = create_hyperlink(rec)
         # Drop redundant field (used to create the hyperlink)
