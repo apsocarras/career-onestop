@@ -8,7 +8,7 @@ import random
 from azure.storage.blob import BlobServiceClient, BlobType
 from email_validator import validate_email, EmailNotValidError
 from bs4 import BeautifulSoup
-from funcs.utils import load_config, load_json, request, log_azure, clean_field_text, has_valid_email
+from funcs.utils import load_config, load_json, request, log_azure, clean_field_text, get_email, check_email
 
 ## ------ MAIN FUNCTIONS IN APP ------- ## 
 
@@ -128,6 +128,7 @@ def combine_qa_keys(fetch=False) -> dict:
                 'question_number':{'sm':sm_question_number}, # q['position'] gives the question's position on the current page, not its absolute number
                 'question_family':q['family'],
                 'question_text':{'sm':clean_field_text([h['heading'] for h in q['headings']][0])},
+                'question_type':question_type,
                 'answers':answers
             })
 
@@ -239,7 +240,7 @@ def process_sm_responses(sm_survey_responses) -> list[dict]:
     ## -------------------------------------------------------------------- ## 
 
     # Create/load question answer/key map 
-    combined_map = combine_qa_keys()    
+    combined_map = combine_qa_keys()
 
     ## 1.) Check for unexpected question ids in new responses vs. those in COS translation map. Attempt to refresh keys if there's a mismatch.
     # If there are still unexpected ids, there's probably an error with combine_qa_keys().
@@ -276,25 +277,25 @@ def process_sm_responses(sm_survey_responses) -> list[dict]:
 
             ## Add questions information
             for p in resp['pages']:
-                for q in p['questions']:
+                for q_resp in p['questions']:
+                    # e.g. q_resp = {'id': '156451072', 'answers': [{'other_id': '1149785635', 'text': 'Online'}]}
+                    # e.g. q_resp = {'id': '156451075', 'answers': [{'choice_id': '1149785640'}]}
+                    # e.g. q_resp = {'id': '143922396', 'answers': [{'tag_data': [], 'text': '19977'}]}
 
-                    # Match q to key from combined_map, based on question type and sm question_id
-                    question_type = 'non-skills-matcher' if q['id'] in non_skills_matcher_ids else 'skills-matcher'
-                    q_map = combined_map[question_type][q['id']] 
+                    # Match given question (q_resp) to question object in combined answer key (q_map)
+                    question_type = 'non-skills-matcher' if q_resp['id'] in non_skills_matcher_ids else 'skills-matcher'
+                    q_map = combined_map[question_type][q_resp['id']] # match based on question type and sm question id 
 
-                    # Match given answers in q['answers'] to answers in q_map['answers']
-                    if q_map['answers'] is not None:
-                        # e.g. q = {'id': '144588883', 'answers': [{'choice_id': '1070603278'}]}
+                    if q_map['answers'] is not None: # if the answer key has answer choices listed for the question
+                         
                         q_map_answer_key = {a['id']['sm']:a for a in q_map['answers']}
                         
                         answers = [q_map_answer_key[a['choice_id']] 
-                                for a in q['answers'] if 'choice_id' in a.keys()] \
+                                   for a in q_resp['answers'] if 'choice_id' in a.keys()] \
                                 + [{'id':{'sm':a['other_id']}, 'text':{'sm':a['text']}} 
-                                for a in q['answers'] if 'other_id' in a.keys()] 
-
+                                   for a in q_resp['answers'] if 'other_id' in a.keys()] 
                     else:
-                        # e.g. q = {'id': '143922396', 'answers': [{'tag_data': [], 'text': '19977'}]}
-                        answers = q['answers']
+                        answers = q_resp['answers']
 
                     resp_dict['questions'].append({'question_id':q_map['question_id'], 
                                                 'page_number':q_map['page_number'],
@@ -303,14 +304,15 @@ def process_sm_responses(sm_survey_responses) -> list[dict]:
                                                 'question_text':q_map['question_text'],
                                                 'question_type':question_type, 
                                                 'answers':answers})
+                    
 
-            ## Autofill any missing skills matcher questions in the current response
-            current_resp_question_ids = [q['question_id'] for q in resp_dict['questions'] if q['question_type'] == 'skills-matcher']
-            for q_map in list(combined_map['skills-matcher'].values()):
-                if q_map['question_id'] not in current_resp_question_ids:
+            ## Autofill any missing questions in the current response
+            current_resp_question_ids = [q['question_id']['sm'] for q in resp_dict['questions']]
+            print(current_resp_question_ids)
+            for q_map in list(combined_map['non-skills-matcher'].values()) + list(combined_map['skills-matcher'].values()):
+                if q_map['question_id']['sm'] not in current_resp_question_ids:
 
-                    auto_fill_answer = q_map['answers'][0] # Auto fill with the beginner answer
-                    auto_fill_answer['auto_filled'] = True
+                    auto_fill_answer = [q_map['answers'][0]] if q_map['question_type'] == 'skills-matcher' else None # Auto fill with the beginner answer
 
                     fill_dict = {
                         'question_id':q_map['question_id'], 
@@ -318,54 +320,117 @@ def process_sm_responses(sm_survey_responses) -> list[dict]:
                         'question_number':q_map['question_number'], 
                         'question_family': q_map['question_family'],
                         'question_text':q_map['question_text'],
-                        
-                        'question_type':'skills-matcher', 
-                        'answers':auto_fill_answer
-                    }
-                    resp_dict.append(fill_dict)
+                        'question_type':q_map['question_type'], 
 
-        processed_responses.append(resp_dict)    
+                        # Addressing omitted question 
+                        'answers':auto_fill_answer,
+                        'omitted':True
+                    }
+
+                    resp_dict['questions'].append(fill_dict)
         
+            resp_dict['questions'] = sorted(resp_dict['questions'], key=lambda q:int(q['question_number']['sm']))
+
+        processed_responses.append(resp_dict)
+
     ## -- 3. Write (raw) new responses to 'processing' table in DB (TO-DO)  -- ## 
     # load_to_db(...)
     ## -------------------------------------------------------------------- ## 
 
     return processed_responses
 
-## In a processed response's question/answer list, auto-fill any missing skills matcher questions
-def fill_cos_answers(resp:dict):
-    """In a processed response's question/answer list, auto-fill any missing skills matcher questions."""
+## Auto-fill answers in a processed response dict
+# def auto_fill_answers(resp:dict) -> dict:
+#     """Autofill the responses in a survey response from survey monkey"""
+
+#     resp_copy = resp.copy()
+#     resp_question_ids = [q['question_id'] for p in resp_copy['pages'] for q in p['questions']]
+
+#     # Load stored key 
+#     combined_map = combine_qa_keys()
+
+#     for q_map in list(combined_map.values()): 
+#         if q_map['question_id']['sm'] in resp_question_ids:
+#             continue 
+#         else: 
+#             auto_fill_dict =  q_map.copy()
+#             auto_fill_dict['answers'] = [q_map['answers'][0]]
+#             auto_fill_dict['answers'][0]['auto_filled'] = True
+            
+#         resp_copy['questions'].append(auto_fill_dict)
+
+#     return resp_copy
 
 
+## POST these processed responses to the COS Skills Survey
 
-## POST these processed responses to the COS Skills Survey  
-def post_cos(processed_sm_responses): 
-    """Translate a processed SM survey response to a COS POST object, retrieve COS responses.
+def create_cos_request_body(resp:dict) -> tuple:
+    """Create a COS request body from a processed SurveyMonkey response dict"""
+
+    ## COS request object looks like: 
+    # cos_request = {'SKAValueList':
+    #             [{'ElementId':q['question_id']['cos'], 
+    #             'DataValue':str(q['answers'][0]['id']['cos'])} for q in skills_matcher_questions.values()]}
+
+    # Load combined answer key 
+    combined_map = combine_qa_keys()
+
+    # Create question-answer key of provided questions in processed survey response
+    resp_map = {} # cos question_id : cos answer_id
+    for q in resp['questions']:
+        if q['question_type'] == 'skills-matcher':
+            resp_map[q['question_id']['cos']] = q['answers'][0]['id']['cos']
+ 
+    # Fill out request body using stored map and processed respsonse dict 
+    cos_request_body = {'SKAValueList':[]}
+    ommitted_questions = []
+    for q_map in combined_map['skills-matcher'].values(): 
+        # ElementId = COS question id 
+        element_id = q_map['question_id']['cos'] 
+        # If answer for question wasn't provided, autofill DataValue for question with lowest rank answer from stored key for the  question
+        if element_id in resp_map.keys():
+            data_value = str(resp_map[element_id])
+        else: 
+            ## TO-DO: do something with these auto-filled values -- return in tuple? 
+            data_value = str(q_map['answers'][0]['id']['cos'])
+            ommitted_questions.append()
+        
+        cos_request_body['SKAValueList'].append({'ElementId':element_id, 'DataValue':data_value})
+    
+    return cos_request_body
+            
+
+
+def post_cos(processed_sm_responses:list[dict]): 
+    """Translate processed SM survey responses to COS POST objects, retrieve COS responses.
     Fills omitted skills response answers as 'Beginner' before sending to COS API."""
 
+    # Load data for making POST requests 
     data = load_config('../creds/api-key.yaml')
     COS_DATA = data['cos']
 
-
-    cos_data = []
-    for resp in processed_sm_responses:
-        
-        cos_request = {'SKAValueList':
-                    [{'ElementId':q['question_id']['cos'], 
-                    'DataValue':str(q['answers'][0]['cos'])} for q in resp['questions'] 
-                        if q['question_type'] == 'skills-matcher']}
-    
-        cos_response = request(method="POST", 
+    # Add COS request object and COS response to each dict in the processed_sm_responses  
+    responses_copy = processed_sm_responses.copy()
+    for resp in responses_copy:
+        email_address = get_email(resp) 
+        has_valid_email, error_message = check_email(email_address) 
+        if has_valid_email: # tuple: bool, valid/error message
+            cos_request = create_cos_request_body(resp)
+            cos_response = request(method="POST", 
                             url=COS_DATA['url'],
                             json=cos_request, 
                             headers=COS_DATA['headers'])
+        else: 
+            log_azure(f"WARNING: {resp['id']} contains invalid email address: {email_address} -- {error_message}. Skipping.")
+            cos_request = None
+            cos_response = None
         
-        cos_data.append({'sm_response_id':resp['response_id'],
-                        'cos_request': cos_request, 
-                        'cos_response':cos_response})
+        resp['cos_request'] = cos_request
+        resp['cos_response'] = cos_response.json()
 
-    return cos_data
-
+    return responses_copy
 
 
-## Check for valid email address and 
+
+
+            

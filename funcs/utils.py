@@ -5,9 +5,14 @@ import datetime as dt
 import time
 import os
 import random
+import urllib
 from azure.storage.blob import BlobServiceClient, BlobType
 from email_validator import validate_email, EmailNotValidError
 from bs4 import BeautifulSoup
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from tabulate import tabulate
+
 
 
 ## -- Cloud storage and logging -- ## 
@@ -135,51 +140,175 @@ def load_config(fp:str):
         data = yaml.full_load(file)
     return data 
 
-def get_email(sm_survey_response) -> str:
-    """Get email from SurveyMonkey survey response. Returns None if email is not provided"""
-    # Validate email if one was provided
-    questions = [q for p in sm_survey_response['pages'] for q in p['questions']]
-    if not any(q['id'] == '145869785' for q in questions): 
-        return None 
-    email_address = [q for q in questions if q['id'] == email_question_id][0]['answers'][0]['text']
+def get_email(processed_response:dict) -> str:
+    """Get email from SurveyMonkey survey response. Assumes email is last question in the survey. Returns None if email is not provided."""
+    try: 
+        email_address = processed_response['questions'][-1]['answers'][0]['text']
+        return email_address
+    except:
+        log_azure(f"INFO: resp {processed_response['id']} is missing email address")
+        return None
+    
+def check_email(email_address=None, check_deliverability=True) -> tuple:
+    """Wrapper to validate email address"""
+    if email_address is not None:
+        try: 
+            validate_email(email_address, check_deliverability=check_deliverability)
+            return True, "Valid Email"
+        except EmailNotValidError as e: 
+            return False, e
 
+def load_email_message(): 
+    """Load the email introduction message email"""
+    message_style = "font-weight: bold; font-style: italic; font-size: 16px;"
 
+    with open("email_message_text.txt", "r") as file: 
+        text = file.read()
 
-def has_valid_email(sm_survey_response:dict, check_deliverability=False) -> bool: 
-    """Check if SM survey response includes a valid email address in the email question.
-    Use to skip a response in process_sm_responses().
-
-    Args: 
-
-    sm_survey_response (dict): The Survey Response object from Survey monkey 
-
-    email_question_id (str): The question id for the email question in the SM answer key. 
-
+    message_text = """
+    Thank you for participating in our workforce survey about community member job skills, experiences, and interests. 
+    Your inputs will be extremely important as we seek to understand the employment strengths and desires of people from across the state, to make informed recommendations to workforce decision makers about how to improve access to employment for ALL Delawareans. 
     """
-    # Identify the question_id of the email question in the answer key  
-    email_question_id = '145869785' # [q['question_id'] for q in combined_map['non-skills-matcher'] 
-                                    # if 'email' in q['question_text'].lower()][0]
-    
-    # Check if sm_response contains the email question (if any question is ommitted, the respondent left it blank)      
-    questions = [q for p in sm_survey_response['pages'] for q in p['questions']]
-    if not any(q['id'] == email_question_id for q in questions): 
-        return False 
-    
-    # Validate email if one was provided 
-    email_address = [q for q in questions if q['id'] == email_question_id][0]['answers'][0]['text']
-    try:
-        validate_email(email_address, check_deliverability=check_deliverability)
-        return True
-    except EmailNotValidError as e:
-        log_azure(f"WARNING: {sm_survey_response['id']} contains invalid email address: {email_address} -- {str(e)}. Skipping.")
-        ## TO-DO: Add further processing logic and logs based on error message -- e.g. 'The email address contains invalid characters before the @-sign'  
-        return False 
 
-def track_api_calls():
-    """Keep track of/log how many calls to the survey monkey API the app has made in a given day.""" 
-    ## TO-DO -- SM API includes this information in the response headers
 
+    message = f'<div style="{message_style}">Your customized top 20 suggestion list is as follows:</div>\n\n{table_html}'
+
+
+# def track_api_calls():
+#     """Keep track of/log how many calls to the survey monkey API the app has made in a given day.""" 
+#     ## TO-DO -- SM API includes this information in the response headers
 
 ## ----------------------------------------------------------------------------- ## 
 #  Function to send email 
+class ApiClient:
+    apiUri = 'https://api.elasticemail.com/v2'
 
+    def __init__(self, api_key):
+        self.apiKey = api_key
+
+    def Request(self, method, url, data):
+        data['apikey'] = self.apiKey
+        if method == 'POST':
+            result = requests.post(f'{self.apiUri}{url}', data=data)
+        elif method == 'PUT':
+            result = requests.put(f'{self.apiUri}{url}', data=data)
+        elif method == 'GET':
+            result = requests.get(f'{self.apiUri}{url}', params=data)
+
+        jsonMy = result.json()
+
+        if jsonMy['success'] is False:
+            return jsonMy['error']
+
+        return jsonMy['data']
+
+def Send(subject, EEfrom, fromName, to, bodyHtml, bodyText, isTransactional, api_key):
+    client = ApiClient(api_key)
+    return client.Request('POST', '/email/send', {
+        'subject': subject,
+        'from': EEfrom,
+        'fromName': fromName,
+        'to': to,
+        'bodyHtml': bodyHtml,
+        'bodyText': bodyText,
+        'isTransactional': isTransactional
+    })
+
+# Create hyperlinks to job page
+def create_hyperlink(rec:dict) -> str:
+    base_url = "https://www.careeronestop.org/Toolkit/Careers/Occupations/occupation-profile.aspx?"
+    parameters = {
+        "keyword": urllib.parse.quote(rec['OccupationTitle']),
+        "location": "US",
+        "lang": "en",
+        "onetCode": rec["OnetCode"]
+    }
+    url_params = "&".join([f"{key}={value}" for key, value in parameters.items()])
+    url = f'{base_url}{url_params}'
+    return f'<a href="{url}">{rec["OccupationTitle"]}</a>'
+
+def send_email(processed_sm_response:dict): 
+    with open('../creds/api-key.yaml', 'r') as file: 
+        data = yaml.full_load(file)['elastic-email']['shared-account']
+
+    APP_PASSWORD = data['app-password']
+    API_KEY = data['ee-api-key']
+    SENDER_EMAIL = data['sender-email']
+    RECEIVER_EMAIL = get_email(processed_sm_response)
+
+    # general email settings 
+    SMTP_SERVER = "smtp.gmail.com"
+    SMTP_PORT = 587
+    EMAIL_SUBJECT = f'Your survey result for {dt.datetime.now().strftime("%B %d, %Y")}'
+
+    # Extract and format data
+    cos_response = processed_sm_response['cos_response']
+    rec_list = cos_response['SKARankList']
+    rename_keys_map = {'Rank': 'Your Match Rank', 
+                    'OccupationTitle': 'Occupation Title', 
+                    'AnnualWages': 'Average Wages (Annual)', 
+                    'TypicalEducation': 'Typical Education'
+                    }
+    for rec in rec_list:
+        # Set occupation title to hyperlink
+        rec['OccupationTitle'] = create_hyperlink(rec)
+        # Drop redundant field (used to create the hyperlink)
+        rec.pop('OnetCode')
+        # Format wages 
+        rec['AnnualWages'] = f"${rec['AnnualWages']:,.0f}"
+        # Rename columns
+        for k,v in rename_keys_map.items(): 
+            rec[v] = rec.pop(k) # rename the key 
+        
+    ## Format HTML table 
+    column_alignments = {
+        "Your Match Rank": "center",
+        "Occupation Title": "left",
+        "Average Wages (Annual)": "right",
+        "Typical Education": "left",
+        "Outlook": "left"
+    }
+
+    table = tabulate(
+        rec_list,
+        headers="keys",
+        tablefmt="html",
+        colalign=[column_alignments[col] for col in column_alignments.keys()]
+    )
+
+    ## Styling the table 
+    table_headers = column_alignments.keys()
+    table_html = "<table>"
+    table_html += "<tr>"
+
+    # Header Style
+    header_style = "font-weight: bold; font-size: 20px;"
+    for header in table_headers:
+        table_html += f"<th style='{header_style}'>{header}</th>"
+    table_html += "</tr>"
+
+    # Cell Style
+    cell_style = "font-weight: normal; font-size: 16px;"  
+    for rec in rec_list:
+        table_html += "<tr>"
+        for header in table_headers:
+            table_html += f"<td style='{cell_style}'>{rec[header]}</td>"
+        table_html += "</tr>"
+    table_html += "</table>"
+
+    # Message Style
+    message_style = "font-weight: normal; font-size: 16px;"
+
+    # Use the table_html in your email body
+    message = f'<div style="{message_style}">Your customized top 20 suggestion list is as follows:</div>\n\n{table_html}'
+
+    # Send the Email
+    result = Send(EMAIL_SUBJECT,
+                SENDER_EMAIL,
+                "Tech Impact",
+                RECEIVER_EMAIL,
+                f"<h1>{message}</h1>",
+                f"{message}",
+                True,
+                API_KEY)
+    print(result)
