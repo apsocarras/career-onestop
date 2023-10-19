@@ -9,9 +9,9 @@ import urllib
 from azure.storage.blob import BlobServiceClient, BlobType
 from email_validator import validate_email, EmailNotValidError
 from bs4 import BeautifulSoup
+import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from tabulate import tabulate
 
 
 
@@ -134,14 +134,14 @@ def query_db():
 ## ----------------------------------------------------------------------------- ## 
 #  Small helper functions specific to the script 
 
-def load_config(fp:str): 
+def load_config(fp='../creds/api-key.yaml'): 
     """Load information from config file"""
     with open(fp, "r") as file:
         data = yaml.full_load(file)
     return data 
 
-def get_email(processed_response:dict) -> str:
-    """Get email from SurveyMonkey survey response. Assumes email is last question in the survey. Returns None if email is not provided."""
+def get_email_address(processed_response:dict) -> str:
+    """Get email address from SurveyMonkey survey response. Assumes email is last question in the survey. Returns None if email is not provided."""
     try: 
         email_address = processed_response['questions'][-1]['answers'][0]['text']
         return email_address
@@ -149,7 +149,7 @@ def get_email(processed_response:dict) -> str:
         # log_azure(f"INFO: resp {processed_response['response_id']} is missing email address")
         return None
     
-def check_email(email_address=None, check_deliverability=True) -> tuple[bool,str]:
+def check_email_address(email_address=None, check_deliverability=True) -> tuple[bool,str]:
     """Wrapper to validate email address"""
     if email_address is not None:
         try: 
@@ -160,61 +160,17 @@ def check_email(email_address=None, check_deliverability=True) -> tuple[bool,str
     else:
         return False, "Email Missing (see get_email())"
 
-def load_email_message(): 
-    """Load the email introduction message email"""
-    message_style = "font-weight: bold; font-style: italic; font-size: 16px;"
-
-    with open("email_message_text.txt", "r") as file: 
-        text = file.read()
-
-   
-
-
-    message = f'<div style="{message_style}">Your customized top 20 suggestion list is as follows:</div>\n\n{table_html}'
-
-
 # def track_api_calls():
 #     """Keep track of/log how many calls to the survey monkey API the app has made in a given day.""" 
 #     ## TO-DO -- SM API includes this information in the response headers
 
 ## ----------------------------------------------------------------------------- ## 
-#  Function to send email 
-class ApiClient:
-    apiUri = 'https://api.elasticemail.com/v2'
+### Functions for sending and composing emails
 
-    def __init__(self, api_key):
-        self.apiKey = api_key
+## Formatting emails 
 
-    def Request(self, method, url, data):
-        data['apikey'] = self.apiKey
-        if method == 'POST':
-            result = requests.post(f'{self.apiUri}{url}', data=data)
-        elif method == 'PUT':
-            result = requests.put(f'{self.apiUri}{url}', data=data)
-        elif method == 'GET':
-            result = requests.get(f'{self.apiUri}{url}', params=data)
-
-        jsonMy = result.json()
-
-        if jsonMy['success'] is False:
-            return jsonMy['error']
-
-        return jsonMy['data']
-
-def Send(subject, EEfrom, fromName, to, bodyHtml, bodyText, isTransactional, api_key):
-    client = ApiClient(api_key)
-    return client.Request('POST', '/email/send', {
-        'subject': subject,
-        'from': EEfrom,
-        'fromName': fromName,
-        'to': to,
-        'bodyHtml': bodyHtml,
-        'bodyText': bodyText,
-        'isTransactional': isTransactional
-    })
-
-# Create hyperlinks to job page
 def create_url(job_title:str,onet_code:str ) -> str:
+    """Construct the URL to a job description page"""
     base_url = "https://www.careeronestop.org/Toolkit/Careers/Occupations/occupation-profile.aspx?"
     parameters = {
         "keyword": urllib.parse.quote(job_title),
@@ -227,7 +183,124 @@ def create_url(job_title:str,onet_code:str ) -> str:
     return url 
     # return f'<a href="{url}">{onet_code}</a>'
 
-def send_email(processed_sm_response:dict, max_recommendations:10): 
+def compose_email(cos_response:dict) -> tuple[str]:
+    """
+    Compose the HTML-formatted text of an email given a response object from CareerOneStop
+    
+    Args: 
+
+    cos_response (dict): Response from COS Skills Matcher API 
+
+    Returns: 
+
+    email_subject, email_body (tuple[str]): String tuple of email subject and body  
+    
+    """ 
+    
+    ## Get Job recommendations from Response
+    rec_list = []
+    for rec in cos_response['SKARankList']: 
+        cleaned_rec = {}
+        cleaned_rec['Your Match Rank'] = rec['Rank'] 
+        cleaned_rec['Job Title'] = rec['OccupationTitle']
+        cleaned_rec['Typical Wages (Annual)'] = f"${rec['AnnualWages']:,.0f}"
+        cleaned_rec['Typical Education'] = rec['TypicalEducation']
+        # Create url (not embedded)
+        cleaned_rec['Link'] = create_url(job_title=rec['OccupationTitle'], 
+                                        onet_code=rec['OnetCode'])
+        rec_list.append(cleaned_rec)
+
+    ## Format/Style HTML Table
+    table_headers = rec_list[0].keys()
+    table_html = "<table>"
+    table_html += "<tr>"
+
+    # Header Style
+    header_style = "font-weight: bold; font-size: 20px;"
+    for header in table_headers:
+        table_html += f"<th style='{header_style}'>{header}</th>"
+    table_html += "</tr>"
+
+    # Cell Style
+    cell_style = "font-weight: normal; font-size: 16px;"  
+    for rec in rec_list:
+        table_html += "<tr>"
+        for header in table_headers:
+            table_html += f"<td style='{cell_style}'>{rec[header]}</td>"
+        table_html += "</tr>"
+    table_html += "</table>"
+
+    ## Load introductory message
+    with open("../funcs/email_message_text.txt", "r") as file: 
+        message_text = file.read()
+    message_text = message_text.replace('\n', '<br>')
+
+    ## Compose email body 
+    section_separator = "<br><hr><br>"
+    message_style = "font-weight: bold; font-style: italic; font-size: 16px;"
+    email_body = f"<div style=\"{message_style}\">{message_text}{section_separator}</div>{table_html}"
+
+    ## Standard email subject text 
+    email_subject = "Work4Success: Your Results from the CWC Survey"
+
+    return email_subject, email_body
+
+def send_email(subject, message, sender, app_password, recipient, server='smtp.gmail.com', port=587):
+    """Send the email to a respondent's provided email (after it was validated and the request to COS successful)"""
+    msg = MIMEMultipart()
+    msg["Subject"] = subject
+    msg.attach(MIMEText(message, 'html'))  # Use 'html' for HTML content or 'plain' for plain text.
+
+    server = smtplib.SMTP(server, port)
+    server.starttls()
+    server.login(sender, app_password)
+    server.sendmail(sender, recipient, msg.as_string())
+    server.quit()
+
+
+
+
+
+# Elastic Email API Approach
+# class ApiClient:
+#     apiUri = 'https://api.elasticemail.com/v2'
+
+#     def __init__(self, api_key):
+#         self.apiKey = api_key
+
+#     def Request(self, method, url, data):
+#         data['apikey'] = self.apiKey
+#         if method == 'POST':
+#             result = requests.post(f'{self.apiUri}{url}', data=data)
+#         elif method == 'PUT':
+#             result = requests.put(f'{self.apiUri}{url}', data=data)
+#         elif method == 'GET':
+#             result = requests.get(f'{self.apiUri}{url}', params=data)
+
+#         jsonMy = result.json()
+
+#         if jsonMy['success'] is False:
+#             return jsonMy['error']
+
+#         return jsonMy['data']
+
+# def Send(subject, EEfrom, fromName, to, bodyHtml, bodyText, isTransactional, api_key):
+#     client = ApiClient(api_key)
+#     return client.Request('POST', '/email/send', {
+#         'subject': subject,
+#         'from': EEfrom,
+#         'fromName': fromName,
+#         'to': to,
+#         'bodyHtml': bodyHtml,
+#         'bodyText': bodyText,
+#         'isTransactional': isTransactional
+#     })
+
+
+
+def email_results(processed_sm_response:dict, max_recommendations:10):
+    """Email recipients with their Skills Matcher results.""" 
+    
     with open('../creds/api-key.yaml', 'r') as file: 
         data = yaml.full_load(file)['elastic-email']['shared-account']
 
@@ -302,13 +375,17 @@ def send_email(processed_sm_response:dict, max_recommendations:10):
     # Use the table_html in your email body
     message = f'<div style="{message_style}">Your customized top 20 suggestion list is as follows:</div>\n\n{table_html}'
 
-    # Send the Email
-    result = Send(EMAIL_SUBJECT,
-                SENDER_EMAIL,
-                "Tech Impact",
-                RECEIVER_EMAIL,
-                f"<h1>{message}</h1>",
-                f"{message}",
-                True,
-                API_KEY)
-    print(result)
+    # # Send the Email
+    # result = Send(EMAIL_SUBJECT,
+    #             SENDER_EMAIL,
+    #             "Tech Impact",
+    #             RECEIVER_EMAIL,
+    #             f"<h1>{message}</h1>",
+    #             f"{message}",
+    #             True,
+    #             API_KEY)
+    # print(result)
+    
+
+
+

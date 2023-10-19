@@ -8,7 +8,7 @@ import random
 from azure.storage.blob import BlobServiceClient, BlobType
 from email_validator import validate_email, EmailNotValidError
 from bs4 import BeautifulSoup
-from funcs.utils import load_config, load_json, request, log_azure, clean_field_text, get_email, check_email
+from funcs.utils import load_config, load_json, request, log_azure, clean_field_text, get_email_address, check_email_address
 
 ## ------ MAIN FUNCTIONS IN APP ------- ## 
 
@@ -433,16 +433,6 @@ def post_cos(processed_sm_responses:list[dict]):
         resp['cos_response'] = cos_response 
 
     return responses_copy
-
-def send_emails(processed_sm_responses:list[dict]): 
-    """Send emails to respondents"""
-
-    for resp in processed_sm_responses:
-        get_email(resp[])
-
-
-
-
 
 
 
