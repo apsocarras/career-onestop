@@ -42,12 +42,11 @@ def get_qa_key(api=None, fetch=False) -> dict:
     if api == "sm": 
         url = f"{SM_DATA['base_url']}/details"
         headers = SM_DATA['headers']
-        cached_fp = "../data/real-survey/copy/copy-sm-survey-key.json"
+        cached_fp = "data/real-survey/copy/copy-sm-survey-key.json"
     elif api == "cos":
         url = COS_DATA['url']
         headers = COS_DATA['headers']
-        cached_fp = "../data/real-survey/copy/copy-cos-survey-key.json"
-
+        cached_fp = "data/real-survey/copy/copy-cos-survey-key.json"
     else:
         raise Exception("`api` must be one of `sm` (SurveyMonkey) or `cos` (CareerOneStop)")
     
@@ -113,7 +112,7 @@ def combine_qa_keys(fetch=False) -> dict:
         
             question_type = 'skills-matcher' if "skills matcher" in p['title'].lower()  else "non-skills-matcher" 
             
-            answers = None  
+            answers = [] # previously answers = None messed with searching arrays 
             if 'choice' in q['family']: # single_choice, multiple_choice 
                 # Main answer choices
                 answers = [{'id':{'sm':a['id']}, 'text':{'sm':clean_field_text(a['text'])}} for a in q['answers']['choices']]
@@ -203,9 +202,9 @@ def get_sm_survey_responses(per_page=100, start_created_at=None, status='complet
     SM_DATA = data['sm']['copy-real']
     url = SM_DATA['base_url'] + f"/responses/bulk"
     
-    params = {"per_page":per_page,
+    params = {"per_page":str(per_page),
               "status":status,
-              "total_time_taken":str(minimum_minutes),
+              "total_time_min":str(minimum_minutes),
               "total_time_units":"minute",
               "sort_by":sort_by, 
               "sort_order":sort_order}
@@ -220,27 +219,24 @@ def get_sm_survey_responses(per_page=100, start_created_at=None, status='complet
 
     ## GET Request 
     survey_responses = []
-    processed_response_ids = load_processed_response_ids() # TO-DO: 
+    processed_response_ids = load_processed_response_ids()
 
     # If all the survey responses in the current response page from SurveyMonkey API are new, need to also GET survey responses from the next page (if another page is available)
     # Triggers for the first GET request as well because survey_responses is empty
 
     while not any(resp['id'] in processed_response_ids for resp in survey_responses): 
-
+        print(url)
         response = request(url=url, headers=SM_DATA['headers'], params=params, method="GET")
-    
+
         # Error handling 
         error_message = 'Failed to retrieve SurveyMonkey response after multiple attempts'
         if response is None: 
             raise Exception(error_message)
         elif response.status_code != 200:
-            raise Exception(error_message + f": {response.status_code}")
+            raise Exception(error_message + f" (Status: {response.status_code})")
         else:
-            try:          
-                current_response_page = response.json()
-                survey_responses.extend(current_response_page['data'])
-            except: 
-                raise Exception(f'Unable to extract SurveyMonkey Response JSON: {response.content}')
+            current_response_page = response.json()
+            survey_responses.extend(current_response_page['data'])
             
         # Checks for any additional pages listed in the current SM response page 
         if 'links' in current_response_page.keys() and 'next' in current_response_page['links'].keys():
@@ -248,7 +244,7 @@ def get_sm_survey_responses(per_page=100, start_created_at=None, status='complet
             url = current_response_page['links']['next']
         else: 
             break
-            
+
     return survey_responses
 
 ## Add information from combined answer key to these responses
@@ -273,19 +269,26 @@ def translate_sm_response(resp:dict, combined_map:dict) -> dict:
         # If current question is omitted from the response, auto-fill from question answer key
         if q_map['question_id']['sm'] not in resp_question_answers.keys():
             q_map['auto_filled'] = True
-            q_map['answers'] = [q_map['answers'][0]] if q_map['question_type'] == 'skills-matcher' else None\
+            q_map['answers'] = [q_map['answers'][0]] if q_map['question_type'] == 'skills-matcher' else None
 
         # If the answer key has answer choices listed for the question 
-        elif q_map['answers'] is not None:    
+        elif len(q_map['answers']) > 0:    
             
             q_map_answer_key = {a['id']['sm']:a for a in q_map['answers']}
-
-            resp_answers = [q_map_answer_key[a['choice_id']] 
-                            if 'choice_id' in a.keys() 
-                            else {'id':{'sm':a['other_id']}, 'text':{'sm':clean_field_text(a['text'])}}
-                            for a in resp_question_answers[q_map['question_id']['sm']]]
+            answers = []
             
-            q_map['answers'] = resp_answers
+            for a in resp_question_answers[q_map['question_id']['sm']]: 
+                if 'choice_id' in a.keys(): 
+                    answers.append(q_map_answer_key[a['choice_id']])
+                elif 'other_id' or 'row_id' in a.keys():
+                    # These questions have text in them which we need to clean, so treated differently from 'choice_id'
+                    alt_id = 'other_id' if 'other_id' in a.keys() else 'row_id'
+                    answers.append({'id':{'sm':a[alt_id]}, 'text':{'sm':clean_field_text(a['text'])}})
+                else:
+                    log_azure(f'WARNING: New kind of question was added -- survey must have been changed')
+                    answers.append(a)
+
+            q_map['answers'] = answers
 
         else: 
             q_map['answers'] = resp_question_answers[q_map['question_id']['sm']]
@@ -296,7 +299,6 @@ def translate_sm_response(resp:dict, combined_map:dict) -> dict:
         resp_dict['questions'].append(q_map)
 
     return resp_dict
-
 
 
 

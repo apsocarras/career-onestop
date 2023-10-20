@@ -110,14 +110,19 @@ def clean_field_text(text):
     return clean_text.strip()
 
 ## Load JSON -- handles/logs any errors gracefully and returns None: 
-def load_json(file_path:str): 
+def load_json(fp:str): 
     """Wrapper to load a JSON file and check if it exists"""
+
+    # depending on whether I run these functions in a notebook in notebooks/ or in main.py from the command line.
+    if not os.path.isfile(fp):
+        fp = os.path.join(os.path.abspath(os.path.pardir), fp) 
+
     try: 
-        with open(file_path, "r") as file: 
+        with open(fp, "r") as file: 
             json_data = json.load(file)
         return json_data
     except Exception as e: 
-        log_azure(f"ERROR loading {file_path}: {str(e)}.")
+        log_azure(f"ERROR loading {fp}: {str(e)}.")
         return None    
 
 ## Load to DB (TO-DO)
@@ -132,32 +137,64 @@ def query_db():
 ## ----------------------------------------------------------------------------- ## 
 #  Small helper functions specific to the script 
 
-def load_config(fp='../creds/api-key.yaml'): 
+def load_config(fp='creds/api-key.yaml'): 
     """Load information from config file"""
+
+    # depending on whether I run these functions in a notebook in notebooks/ or in main.py from the command line.
+    if not os.path.isfile(fp):
+        fp = os.path.join(os.path.abspath(os.path.pardir), fp) 
+
     with open(fp, "r") as file:
         data = yaml.full_load(file)
     return data 
 
-def get_email_address(processed_response:dict) -> str:
+def get_email_address(translated_response:dict) -> str:
     """Get email address from SurveyMonkey survey response. Assumes email is last question in the survey. Returns None if email is not provided."""
     try: 
-        email_address = processed_response['questions'][-1]['answers'][0]['text']
+        email_address = [q['answers'][0]['text'] for q in translated_response['questions'] 
+                         if int(q['question_number']['sm']) == 82][0]
         return email_address
     except Exception as e:
         return None
     
+def load_contacted_email_addresses(): 
+    """Load list of email addresses which have already been contacted. Prevents re-sending emails."""
+    
+    fp = 'contacted_email_addresses.txt'
+    if not os.path.isfile(fp): 
+        fp = os.path.join(os.path.abspath(os.path.pardir), fp)
+
+    with open('contacted_email_addresses.txt', 'r') as file: 
+        contacted_addresses = file.read().splitlines()
+    contacted_addresses = [a.strip() for a in contacted_addresses]
+    return contacted_addresses
+
+def update_contacted_email_addresses(email_address:str) -> None: 
+    """Update list of email addresses which have already been contacted. Prevents re-sending emails."""
+    fp = 'contacted_email_addresses.txt'
+    if not os.path.isfile(fp): 
+        fp = os.path.join(os.path.abspath(os.path.pardir), fp)
+
+    with open(fp, 'a') as file: 
+        file.write(email_address+'\n')
+
 def check_email_address(email_address=None, check_deliverability=True) -> tuple[bool,str]:
     """Wrapper to validate email address"""
     if email_address is not None:
-        try: 
-            validate_email(email_address, check_deliverability=check_deliverability)
-            return True, "Valid Email"
-        except EmailNotValidError as e: 
-            return False, str(e)
+        contacted_addresses = load_contacted_email_addresses()
+        if email_address in contacted_addresses:
+            return False, 'Email Already Contacted'
+        else: 
+            try: 
+                validate_email(email_address, check_deliverability=check_deliverability)
+                return True, "Valid Email"
+            except EmailNotValidError as e: 
+                return False, str(e)
+            except Exception: 
+                print(f'Not a string: {email_address}')
     else:
         return False, "Email Missing"
     
-
 def load_processed_response_ids():
     """Load list of already processed response ids from database"""
     return ['placeholder_dummy_value'] # TO-DO
@@ -183,9 +220,11 @@ def check_unexpected_question_ids(sm_survey_response, combined_map) -> set:
 def create_cos_request_body(resp:dict) -> tuple:
     """Create a COS request body from a processed SurveyMonkey response dict"""
 
-    cos_request_body = {'SKAValueList':[{'ElementId':q['question_id']['cos'],
-                                         'DataValue':q['answers'][0]['id']['cos']}]
-                        for q in resp['questions'] if q['question_type'] == 'skills-matcher'}
+    cos_request_body = {'SKAValueList':
+        [{'ElementId':q['question_id']['cos'],
+         'DataValue':q['answers'][0]['id']['cos']} 
+         for q in resp['questions'] if q['question_type'] == 'skills-matcher']
+        }
 
     return cos_request_body
 
@@ -199,12 +238,11 @@ def post_cos(cos_request_body:dict) -> dict:
     cos_response = request(method="POST", 
                         url=data['cos']['url'],
                         json=cos_request_body, 
-                        headers=data['cos']['url'])
+                        headers=data['cos']['headers'])
     
-    # Attempt to extract JSON Response Data 
     try: 
         cos_response = cos_response.json()
-    except: 
+    except Exception as e: 
         log_azure(f"WARNING: {cos_response['response_id']}, failed to unpack COS API response JSON ({cos_response.status_code}). Leaving as 'None'.")
         cos_response = None       
 
@@ -213,7 +251,7 @@ def post_cos(cos_request_body:dict) -> dict:
 ## ----------------------------------------------------------------------------- ## 
 ### Functions for composing and sending emails
 
-## Formatting emails 
+## Formatting emails
 
 def create_job_url(job_title:str,onet_code:str ) -> str:
     """Construct the URL to a job description page"""
@@ -228,6 +266,18 @@ def create_job_url(job_title:str,onet_code:str ) -> str:
     url = f'{base_url}{url_params}'
     return url 
     # return f'<a href="{url}">{onet_code}</a>'
+
+def load_email_text(): 
+    """Load the text of the email message body"""
+    
+    fp = "modules/email_message_text.txt"
+    if not os.path.isfile(fp): 
+        fp = os.path.join(os.path.abspath(os.path.pardir),fp)
+
+    with open(fp, "r") as file:     
+        message_text = file.read()
+
+    return message_text.replace('\n', '<br>')
 
 def compose_email(cos_response:dict, max_recommendations=10) -> tuple[str]:
     """
@@ -280,9 +330,7 @@ def compose_email(cos_response:dict, max_recommendations=10) -> tuple[str]:
     table_html += "</table>"
 
     ## Load introductory message
-    with open("../funcs/email_message_text.txt", "r") as file: 
-        message_text = file.read()
-    message_text = message_text.replace('\n', '<br>')
+    message_text = load_email_text()
 
     ## Compose email body 
     section_separator = "<br><hr><br>"
@@ -294,16 +342,22 @@ def compose_email(cos_response:dict, max_recommendations=10) -> tuple[str]:
 
     return email_subject, email_body
 
-def send_email(subject, message, sender, app_password, recipient, server='smtp.gmail.com', port=587):
+def send_email(subject, message, sender, app_password, recipient, server='smtp.gmail.com', port=587) -> bool:
     """Send the email to a respondent's provided email (after it was validated and the request to COS successful)"""
-    msg = MIMEMultipart()
-    msg["Subject"] = subject
-    msg.attach(MIMEText(message, 'html'))  # Use 'html' for HTML content or 'plain' for plain text.
+    try:
+        msg = MIMEMultipart()
+        msg["Subject"] = subject
+        msg.attach(MIMEText(message, 'html'))  # Use 'html' for HTML content or 'plain' for plain text.
 
-    server = smtplib.SMTP(server, port)
-    server.starttls()
-    server.login(sender, app_password)
-    server.sendmail(sender, recipient, msg.as_string())
-    server.quit()
+        server = smtplib.SMTP(server, port)
+        server.starttls()
+        server.login(sender, app_password)
+        server.sendmail(sender, recipient, msg.as_string())
+        server.quit()
 
+        return True  # Email sent successfully
+    except Exception as e:
+        # Handle exceptions, log errors, or return False for failure
+        print(f"Email sending failed: {str(e)}")
+        return False
 
