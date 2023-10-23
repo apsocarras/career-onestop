@@ -23,8 +23,6 @@ def main():
 
     ## GET new survey responses from SurveyMonkey 
     sm_survey_responses = get_sm_survey_responses(minimum_minutes='1')
-    # with open('temp_sm_survey_responses_cache_test.json', 'r') as file: 
-    #     sm_survey_responses = json.load(file)
 
     ## Process these survey responses 
     for resp in sm_survey_responses: 
