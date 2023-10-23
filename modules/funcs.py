@@ -14,7 +14,7 @@ from modules.utils import get_email_address, check_email_address, load_processed
 ## --- For larger/core functions in the app  --- ## 
 
 ## GET/Load question-answer keys for SurveyMonkey Survey and CareerOneStop Skills Matcher
-def get_qa_key(api=None, fetch=False) -> dict:
+def get_qa_key(api=None, fetch=False, sm_survey_version='copy-real') -> dict:
     """
     Load list of questions/answers from either the Survey Monkey API `/details` endpoint or from CareerOneStop SkillsMatcher. 
 
@@ -33,9 +33,12 @@ def get_qa_key(api=None, fetch=False) -> dict:
 
         Note 500 requests/month limit to SM -- if going to use fetch option, may want to only do so periodically.
 
+
+    sm_survey_version (str): What version of the survey to use as specified in the credentials .yaml
+
     """
     data = load_config()
-    SM_DATA = data['sm']['copy-real']
+    SM_DATA = data['sm'][sm_survey_version]
     COS_DATA = data['cos']
 
     # Set SM vs. COS variables
@@ -199,7 +202,7 @@ def get_sm_survey_responses(per_page=100, start_created_at=None, status='complet
 
     ## Configure GET Request 
     data = load_config()
-    SM_DATA = data['sm']['copy-real']
+    SM_DATA = data['sm']['real']
     url = SM_DATA['base_url'] + f"/responses/bulk"
     
     params = {"per_page":str(per_page),
