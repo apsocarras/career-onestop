@@ -3,7 +3,7 @@ data/manual_sm_exports
 mysite_zip.zip
 img/
 mysite
-
+*.ipynb
 
 api-key.yaml
 venv/
