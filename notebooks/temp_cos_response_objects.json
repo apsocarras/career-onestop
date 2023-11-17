@@ -1,0 +1,2295 @@
+{
+    "114444165808": {
+        "SKARankList": [
+            {
+                "OnetCode": "17-1012.00",
+                "Score": 0.301732971776705,
+                "Rank": 1,
+                "Outlook": "Below Average",
+                "AnnualWages": 73210.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Landscape Architects",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "27-1027.00",
+                "Score": 0.30047181758970204,
+                "Rank": 2,
+                "Outlook": "Average",
+                "AnnualWages": 59990.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Set and Exhibit Designers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "27-1013.00",
+                "Score": 0.28602115362559505,
+                "Rank": 3,
+                "Outlook": "Average",
+                "AnnualWages": 57560.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Fine Artists, Including Painters, Sculptors, and Illustrators",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "27-4014.00",
+                "Score": 0.279760946397909,
+                "Rank": 4,
+                "Outlook": "Bright",
+                "AnnualWages": 60670.0,
+                "TypicalEducation": "Postsecondary non-degree award",
+                "OccupationTitle": "Sound Engineering Technicians",
+                "EduCode": 6.0
+            }
+        ],
+        "EduClassList": [
+            {
+                "EduCode": 3.0,
+                "EduTitle": "Bachelor's degree",
+                "Count": 3
+            },
+            {
+                "EduCode": 6.0,
+                "EduTitle": "Some college",
+                "Count": 1
+            },
+            {
+                "EduCode": 4.0,
+                "EduTitle": "Associate's degree",
+                "Count": 0
+            },
+            {
+                "EduCode": 7.0,
+                "EduTitle": "High school diploma or equivalent",
+                "Count": 0
+            },
+            {
+                "EduCode": 2.0,
+                "EduTitle": "Master's degree or higher",
+                "Count": 0
+            },
+            {
+                "EduCode": 9.0,
+                "EduTitle": "Some high school",
+                "Count": 0
+            }
+        ],
+        "RecordCount": 4,
+        "FilterValue": 0
+    },
+    "114443941626": {
+        "SKARankList": [
+            {
+                "OnetCode": "29-1141.02",
+                "Score": 0.410165613134089,
+                "Rank": 1,
+                "Outlook": "Bright",
+                "AnnualWages": 81220.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Advanced Practice Psychiatric Nurses",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "29-1299.01",
+                "Score": 0.37277313781613297,
+                "Rank": 2,
+                "Outlook": "Below Average",
+                "AnnualWages": 106230.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Naturopathic Physicians",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-9092.00",
+                "Score": 0.36376657457926104,
+                "Rank": 3,
+                "Outlook": "Bright",
+                "AnnualWages": 89990.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Genetic Counselors",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "19-3034.00",
+                "Score": 0.35396185691923304,
+                "Rank": 4,
+                "Outlook": "Average",
+                "AnnualWages": 81500.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "School Psychologists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "21-1011.00",
+                "Score": 0.35229010043618103,
+                "Rank": 5,
+                "Outlook": "Bright",
+                "AnnualWages": 49710.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Substance Abuse and Behavioral Disorder Counselors",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "29-1071.00",
+                "Score": 0.34427919615686603,
+                "Rank": 6,
+                "Outlook": "Bright",
+                "AnnualWages": 126010.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Physician Assistants",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "19-3033.00",
+                "Score": 0.33858206679526004,
+                "Rank": 7,
+                "Outlook": "Bright",
+                "AnnualWages": 90130.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Clinical and Counseling Psychologists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "21-1022.00",
+                "Score": 0.338113517673832,
+                "Rank": 8,
+                "Outlook": "Bright",
+                "AnnualWages": 60280.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Healthcare Social Workers",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-9099.01",
+                "Score": 0.334300785939278,
+                "Rank": 9,
+                "Outlook": "Average",
+                "AnnualWages": 60160.0,
+                "TypicalEducation": "Postsecondary non-degree award",
+                "OccupationTitle": "Midwives",
+                "EduCode": 6.0
+            },
+            {
+                "OnetCode": "29-1223.00",
+                "Score": 0.333443238030305,
+                "Rank": 10,
+                "Outlook": "Bright",
+                "AnnualWages": 226880.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Psychiatrists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-1291.00",
+                "Score": 0.33040352355561603,
+                "Rank": 11,
+                "Outlook": "Average",
+                "AnnualWages": 72220.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Acupuncturists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "31-2012.00",
+                "Score": 0.325499416904205,
+                "Rank": 12,
+                "Outlook": "Bright",
+                "AnnualWages": 37060.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Occupational Therapy Aides",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "29-1129.01",
+                "Score": 0.324112763824242,
+                "Rank": 13,
+                "Outlook": "Bright",
+                "AnnualWages": 60800.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Art Therapists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "31-1133.00",
+                "Score": 0.320867239262584,
+                "Rank": 14,
+                "Outlook": "Average",
+                "AnnualWages": 37160.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Psychiatric Aides",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "39-4011.00",
+                "Score": 0.31960581085415,
+                "Rank": 15,
+                "Outlook": "Average",
+                "AnnualWages": 49910.0,
+                "TypicalEducation": "Associate's degree",
+                "OccupationTitle": "Embalmers",
+                "EduCode": 4.0
+            },
+            {
+                "OnetCode": "29-1122.00",
+                "Score": 0.317498636062685,
+                "Rank": 16,
+                "Outlook": "Bright",
+                "AnnualWages": 93180.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Occupational Therapists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "21-1013.00",
+                "Score": 0.316797569912893,
+                "Rank": 17,
+                "Outlook": "Bright",
+                "AnnualWages": 56570.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Marriage and Family Therapists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-1216.00",
+                "Score": 0.309803440403513,
+                "Rank": 18,
+                "Outlook": "Below Average",
+                "AnnualWages": 214460.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "General Internal Medicine Physicians",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-1125.00",
+                "Score": 0.30887456891088405,
+                "Rank": 19,
+                "Outlook": "Average",
+                "AnnualWages": 51330.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Recreational Therapists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "29-1141.03",
+                "Score": 0.305827716832219,
+                "Rank": 20,
+                "Outlook": "Bright",
+                "AnnualWages": 81220.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Critical Care Nurses",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "29-1229.04",
+                "Score": 0.304734671647113,
+                "Rank": 21,
+                "Outlook": "Below Average",
+                "AnnualWages": 223410.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Physical Medicine and Rehabilitation Physicians",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "21-1023.00",
+                "Score": 0.30198945661537097,
+                "Rank": 22,
+                "Outlook": "Bright",
+                "AnnualWages": 51240.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Mental Health and Substance Abuse Social Workers",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-1215.00",
+                "Score": 0.301770605853459,
+                "Rank": 23,
+                "Outlook": "Below Average",
+                "AnnualWages": 211300.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Family Medicine Physicians",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-9091.00",
+                "Score": 0.298390643619879,
+                "Rank": 24,
+                "Outlook": "Bright",
+                "AnnualWages": 53840.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Athletic Trainers",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-1229.03",
+                "Score": 0.295873667160795,
+                "Rank": 25,
+                "Outlook": "Below Average",
+                "AnnualWages": 223410.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Urologists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-1161.00",
+                "Score": 0.29486957426279903,
+                "Rank": 26,
+                "Outlook": "Bright",
+                "AnnualWages": 120880.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Nurse Midwives",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-1221.00",
+                "Score": 0.29431383355275303,
+                "Rank": 27,
+                "Outlook": "Below Average",
+                "AnnualWages": 190350.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Pediatricians, General",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-1171.00",
+                "Score": 0.291465473438601,
+                "Rank": 28,
+                "Outlook": "Bright",
+                "AnnualWages": 121610.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Nurse Practitioners",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-1229.02",
+                "Score": 0.289346298821098,
+                "Rank": 29,
+                "Outlook": "Below Average",
+                "AnnualWages": 223410.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Hospitalists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-1218.00",
+                "Score": 0.28827056686656605,
+                "Rank": 30,
+                "Outlook": "Below Average",
+                "AnnualWages": 999999.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Obstetricians and Gynecologists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "21-1093.00",
+                "Score": 0.28713951645618196,
+                "Rank": 31,
+                "Outlook": "Bright",
+                "AnnualWages": 38520.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Social and Human Service Assistants",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "21-1014.00",
+                "Score": 0.286345155328393,
+                "Rank": 32,
+                "Outlook": "Bright",
+                "AnnualWages": 49710.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Mental Health Counselors",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "31-2011.00",
+                "Score": 0.28337888707400705,
+                "Rank": 33,
+                "Outlook": "Bright",
+                "AnnualWages": 64250.0,
+                "TypicalEducation": "Associate's degree",
+                "OccupationTitle": "Occupational Therapy Assistants",
+                "EduCode": 4.0
+            },
+            {
+                "OnetCode": "31-1122.00",
+                "Score": 0.282831339928668,
+                "Rank": 34,
+                "Outlook": "Bright",
+                "AnnualWages": 30180.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Personal Care Aides",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "21-1091.00",
+                "Score": 0.28121283806853103,
+                "Rank": 35,
+                "Outlook": "Bright",
+                "AnnualWages": 59990.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Health Education Specialists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "21-1015.00",
+                "Score": 0.27972485969609806,
+                "Rank": 36,
+                "Outlook": "Bright",
+                "AnnualWages": 39990.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Rehabilitation Counselors",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "33-9032.00",
+                "Score": 0.279510467111233,
+                "Rank": 37,
+                "Outlook": "Bright",
+                "AnnualWages": 34750.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Security Guards",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "21-1094.00",
+                "Score": 0.27816912587090303,
+                "Rank": 38,
+                "Outlook": "Bright",
+                "AnnualWages": 46190.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Community Health Workers",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "29-2091.00",
+                "Score": 0.27656037307400705,
+                "Rank": 39,
+                "Outlook": "Bright",
+                "AnnualWages": 77070.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Orthotists and Prosthetists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "13-1031.00",
+                "Score": 0.276203874890171,
+                "Rank": 40,
+                "Outlook": "Below Average",
+                "AnnualWages": 72230.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Claims Adjusters, Examiners, and Investigators",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "21-1021.00",
+                "Score": 0.27591346772911796,
+                "Rank": 41,
+                "Outlook": "Bright",
+                "AnnualWages": 50820.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Child, Family, and School Social Workers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "43-4111.00",
+                "Score": 0.27486615364107597,
+                "Rank": 42,
+                "Outlook": "Below Average",
+                "AnnualWages": 38700.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Interviewers, Except Eligibility and Loan",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "29-2053.00",
+                "Score": 0.272869507393027,
+                "Rank": 43,
+                "Outlook": "Bright",
+                "AnnualWages": 37380.0,
+                "TypicalEducation": "Postsecondary non-degree award",
+                "OccupationTitle": "Psychiatric Technicians",
+                "EduCode": 6.0
+            },
+            {
+                "OnetCode": "29-1123.00",
+                "Score": 0.270254493843673,
+                "Rank": 44,
+                "Outlook": "Bright",
+                "AnnualWages": 97720.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Physical Therapists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "33-9011.00",
+                "Score": 0.270089895854548,
+                "Rank": 45,
+                "Outlook": "Average",
+                "AnnualWages": 39320.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Animal Control Workers",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "21-1092.00",
+                "Score": 0.26996801209593896,
+                "Rank": 46,
+                "Outlook": "Below Average",
+                "AnnualWages": 59860.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Probation Officers and Correctional Treatment Specialists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "31-9097.00",
+                "Score": 0.26520908130285,
+                "Rank": 47,
+                "Outlook": "Bright",
+                "AnnualWages": 38530.0,
+                "TypicalEducation": "Postsecondary non-degree award",
+                "OccupationTitle": "Phlebotomists",
+                "EduCode": 6.0
+            },
+            {
+                "OnetCode": "43-4071.00",
+                "Score": 0.26313345889743295,
+                "Rank": 48,
+                "Outlook": "Below Average",
+                "AnnualWages": 37290.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "File Clerks",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "29-1217.00",
+                "Score": 0.262730767463428,
+                "Rank": 49,
+                "Outlook": "Below Average",
+                "AnnualWages": 224260.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Neurologists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-1129.02",
+                "Score": 0.261797366740816,
+                "Rank": 50,
+                "Outlook": "Bright",
+                "AnnualWages": 60800.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Music Therapists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "21-1012.00",
+                "Score": 0.260296897871251,
+                "Rank": 51,
+                "Outlook": "Bright",
+                "AnnualWages": 60140.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Educational, Guidance, and Career Counselors and Advisors",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-1072.00",
+                "Score": 0.259556857384088,
+                "Rank": 52,
+                "Outlook": "Bright",
+                "AnnualWages": 78580.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Nursing Instructors and Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-2052.00",
+                "Score": 0.25853085911507495,
+                "Rank": 53,
+                "Outlook": "Average",
+                "AnnualWages": 37790.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Pharmacy Technicians",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "25-2058.00",
+                "Score": 0.25787032258766296,
+                "Rank": 54,
+                "Outlook": "Average",
+                "AnnualWages": 63560.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Special Education Teachers, Secondary School",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "29-1141.00",
+                "Score": 0.25759910791323604,
+                "Rank": 55,
+                "Outlook": "Bright",
+                "AnnualWages": 81220.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Registered Nurses",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "27-1025.00",
+                "Score": 0.256748076465248,
+                "Rank": 56,
+                "Outlook": "Below Average",
+                "AnnualWages": 61590.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Interior Designers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "31-9092.00",
+                "Score": 0.254671371853743,
+                "Rank": 57,
+                "Outlook": "Bright",
+                "AnnualWages": 38270.0,
+                "TypicalEducation": "Postsecondary non-degree award",
+                "OccupationTitle": "Medical Assistants",
+                "EduCode": 6.0
+            },
+            {
+                "OnetCode": "23-1021.00",
+                "Score": 0.254668239267126,
+                "Rank": 58,
+                "Outlook": "Below Average",
+                "AnnualWages": 94990.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Administrative Law Judges, Adjudicators, and Hearing Officers",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "39-4021.00",
+                "Score": 0.25298323840468195,
+                "Rank": 59,
+                "Outlook": "Bright",
+                "AnnualWages": 31160.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Funeral Attendants",
+                "EduCode": 7.0
+            }
+        ],
+        "EduClassList": [
+            {
+                "EduCode": 2.0,
+                "EduTitle": "Master's degree or higher",
+                "Count": 28
+            },
+            {
+                "EduCode": 3.0,
+                "EduTitle": "Bachelor's degree",
+                "Count": 13
+            },
+            {
+                "EduCode": 7.0,
+                "EduTitle": "High school diploma or equivalent",
+                "Count": 12
+            },
+            {
+                "EduCode": 6.0,
+                "EduTitle": "Some college",
+                "Count": 4
+            },
+            {
+                "EduCode": 4.0,
+                "EduTitle": "Associate's degree",
+                "Count": 2
+            },
+            {
+                "EduCode": 9.0,
+                "EduTitle": "Some high school",
+                "Count": 0
+            }
+        ],
+        "RecordCount": 59,
+        "FilterValue": 0
+    },
+    "114443932704": {
+        "SKARankList": [
+            {
+                "OnetCode": "29-1229.03",
+                "Score": 0.2719075683372,
+                "Rank": 1,
+                "Outlook": "Below Average",
+                "AnnualWages": 223410.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Urologists",
+                "EduCode": 2.0
+            }
+        ],
+        "EduClassList": [
+            {
+                "EduCode": 2.0,
+                "EduTitle": "Master's degree or higher",
+                "Count": 1
+            },
+            {
+                "EduCode": 4.0,
+                "EduTitle": "Associate's degree",
+                "Count": 0
+            },
+            {
+                "EduCode": 3.0,
+                "EduTitle": "Bachelor's degree",
+                "Count": 0
+            },
+            {
+                "EduCode": 7.0,
+                "EduTitle": "High school diploma or equivalent",
+                "Count": 0
+            },
+            {
+                "EduCode": 9.0,
+                "EduTitle": "Some high school",
+                "Count": 0
+            },
+            {
+                "EduCode": 6.0,
+                "EduTitle": "Some college",
+                "Count": 0
+            }
+        ],
+        "RecordCount": 1,
+        "FilterValue": 0
+    },
+    "114439142203": {},
+    "114437777551": {
+        "SKARankList": [
+            {
+                "OnetCode": "25-1062.00",
+                "Score": 0.774774582058987,
+                "Rank": 1,
+                "Outlook": "Bright",
+                "AnnualWages": 80910.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Area, Ethnic, and Cultural Studies Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-1126.00",
+                "Score": 0.7716870680368859,
+                "Rank": 2,
+                "Outlook": "Bright",
+                "AnnualWages": 78780.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Philosophy and Religion Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-1124.00",
+                "Score": 0.76988846855684,
+                "Rank": 3,
+                "Outlook": "Bright",
+                "AnnualWages": 76030.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Foreign Language and Literature Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-1065.00",
+                "Score": 0.765700153770811,
+                "Rank": 4,
+                "Outlook": "Bright",
+                "AnnualWages": 83770.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Political Science Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "19-3041.00",
+                "Score": 0.763063403346126,
+                "Rank": 5,
+                "Outlook": "Average",
+                "AnnualWages": 98590.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Sociologists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-1125.00",
+                "Score": 0.749788514143443,
+                "Rank": 6,
+                "Outlook": "Average",
+                "AnnualWages": 79400.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "History Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-1112.00",
+                "Score": 0.747166508004591,
+                "Rank": 7,
+                "Outlook": "Bright",
+                "AnnualWages": 108860.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Law Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-1123.00",
+                "Score": 0.74696652798247,
+                "Rank": 8,
+                "Outlook": "Average",
+                "AnnualWages": 74280.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "English Language and Literature Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "19-3094.00",
+                "Score": 0.746361588987556,
+                "Rank": 9,
+                "Outlook": "Average",
+                "AnnualWages": 128020.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Political Scientists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-9031.00",
+                "Score": 0.7387069221721411,
+                "Rank": 10,
+                "Outlook": "Average",
+                "AnnualWages": 66490.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Instructional Coordinators",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-1122.00",
+                "Score": 0.730717210253501,
+                "Rank": 11,
+                "Outlook": "Average",
+                "AnnualWages": 76250.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Communications Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "13-1041.03",
+                "Score": 0.7189436840454849,
+                "Rank": 12,
+                "Outlook": "Average",
+                "AnnualWages": 71690.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Equal Opportunity Representatives and Officers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-1067.00",
+                "Score": 0.715886188621231,
+                "Rank": 13,
+                "Outlook": "Bright",
+                "AnnualWages": 78970.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Sociology Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-1113.00",
+                "Score": 0.714055501959738,
+                "Rank": 14,
+                "Outlook": "Bright",
+                "AnnualWages": 66510.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Social Work Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-1081.00",
+                "Score": 0.705927574336928,
+                "Rank": 15,
+                "Outlook": "Bright",
+                "AnnualWages": 66930.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Education Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-3011.00",
+                "Score": 0.705900135533911,
+                "Rank": 16,
+                "Outlook": "Below Average",
+                "AnnualWages": 58590.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Adult Basic Education, Adult Secondary Education, and English as a Second Language Instructors",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-1192.00",
+                "Score": 0.702240367746885,
+                "Rank": 17,
+                "Outlook": "Average",
+                "AnnualWages": 76440.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Family and Consumer Sciences Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "19-3091.00",
+                "Score": 0.7013163720270751,
+                "Rank": 18,
+                "Outlook": "Average",
+                "AnnualWages": 63940.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Anthropologists and Archeologists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-3021.00",
+                "Score": 0.697701413855827,
+                "Rank": 19,
+                "Outlook": "Bright",
+                "AnnualWages": 44110.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Self-Enrichment Teachers",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "25-2051.00",
+                "Score": 0.696639750199919,
+                "Rank": 20,
+                "Outlook": "Bright",
+                "AnnualWages": 62240.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Special Education Teachers, Preschool",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "21-1012.00",
+                "Score": 0.6924950498824141,
+                "Rank": 21,
+                "Outlook": "Bright",
+                "AnnualWages": 60140.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Educational, Guidance, and Career Counselors and Advisors",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "27-3091.00",
+                "Score": 0.6910235001439,
+                "Rank": 22,
+                "Outlook": "Bright",
+                "AnnualWages": 53640.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Interpreters and Translators",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-1082.00",
+                "Score": 0.689088312593645,
+                "Rank": 23,
+                "Outlook": "Bright",
+                "AnnualWages": 76370.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Library Science Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-1064.00",
+                "Score": 0.682480217863789,
+                "Rank": 24,
+                "Outlook": "Bright",
+                "AnnualWages": 81920.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Geography Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "19-3022.00",
+                "Score": 0.680190200362,
+                "Rank": 25,
+                "Outlook": "Average",
+                "AnnualWages": 60410.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Survey Researchers",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-1061.00",
+                "Score": 0.6787138367175629,
+                "Rank": 26,
+                "Outlook": "Bright",
+                "AnnualWages": 85000.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Anthropology and Archeology Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "43-4121.00",
+                "Score": 0.676899670717096,
+                "Rank": 27,
+                "Outlook": "Below Average",
+                "AnnualWages": 31150.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Library Assistants, Clerical",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "25-2058.00",
+                "Score": 0.6744953286831561,
+                "Rank": 28,
+                "Outlook": "Average",
+                "AnnualWages": 63560.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Special Education Teachers, Secondary School",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "33-3021.06",
+                "Score": 0.6728229222956159,
+                "Rank": 29,
+                "Outlook": "Below Average",
+                "AnnualWages": 86280.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Intelligence Analysts",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "25-2021.00",
+                "Score": 0.671364001748637,
+                "Rank": 30,
+                "Outlook": "Bright",
+                "AnnualWages": 61690.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Elementary School Teachers, Except Special Education",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "15-1255.01",
+                "Score": 0.670824030831312,
+                "Rank": 31,
+                "Outlook": "Bright",
+                "AnnualWages": 83240.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Video Game Designers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "21-1021.00",
+                "Score": 0.667850076309657,
+                "Rank": 32,
+                "Outlook": "Bright",
+                "AnnualWages": 50820.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Child, Family, and School Social Workers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-2057.00",
+                "Score": 0.6665243456315131,
+                "Rank": 33,
+                "Outlook": "Average",
+                "AnnualWages": 62990.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Special Education Teachers, Middle School",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "13-2071.00",
+                "Score": 0.662384572066766,
+                "Rank": 34,
+                "Outlook": "Bright",
+                "AnnualWages": 47320.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Credit Counselors",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-2012.00",
+                "Score": 0.66030003180482,
+                "Rank": 35,
+                "Outlook": "Average",
+                "AnnualWages": 60490.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Kindergarten Teachers, Except Special Education",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "29-1122.01",
+                "Score": 0.660051211234964,
+                "Rank": 36,
+                "Outlook": "Bright",
+                "AnnualWages": 93180.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Low Vision Therapists, Orientation and Mobility Specialists, and Vision Rehabilitation Therapists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "19-3092.00",
+                "Score": 0.658816157259076,
+                "Rank": 37,
+                "Outlook": "Below Average",
+                "AnnualWages": 88900.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Geographers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "19-3032.00",
+                "Score": 0.6586792307072299,
+                "Rank": 38,
+                "Outlook": "Average",
+                "AnnualWages": 139280.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Industrial-Organizational Psychologists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "13-1151.00",
+                "Score": 0.6582830597342599,
+                "Rank": 39,
+                "Outlook": "Bright",
+                "AnnualWages": 63080.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Training and Development Specialists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-1022.00",
+                "Score": 0.657429827778319,
+                "Rank": 40,
+                "Outlook": "Average",
+                "AnnualWages": 77420.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Mathematical Science Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-2031.00",
+                "Score": 0.657009506644862,
+                "Rank": 41,
+                "Outlook": "Average",
+                "AnnualWages": 62360.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Secondary School Teachers, Except Special and Career/Technical Education",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "43-4111.00",
+                "Score": 0.656516461120824,
+                "Rank": 42,
+                "Outlook": "Below Average",
+                "AnnualWages": 38700.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Interviewers, Except Eligibility and Loan",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "25-9044.00",
+                "Score": 0.651740166544492,
+                "Rank": 43,
+                "Outlook": "Bright",
+                "AnnualWages": 38050.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Teaching Assistants, Postsecondary",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "31-9099.01",
+                "Score": 0.651078723660662,
+                "Rank": 44,
+                "Outlook": "Average",
+                "AnnualWages": 40420.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Speech-Language Pathology Assistants",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "25-2059.01",
+                "Score": 0.6499513394680171,
+                "Rank": 45,
+                "Outlook": "Average",
+                "AnnualWages": 63950.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Adapted Physical Education Specialists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-1063.00",
+                "Score": 0.6493012450600321,
+                "Rank": 46,
+                "Outlook": "Bright",
+                "AnnualWages": 103930.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Economics Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "11-3131.00",
+                "Score": 0.6474647977837581,
+                "Rank": 47,
+                "Outlook": "Bright",
+                "AnnualWages": 120000.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Training and Development Managers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "27-3041.00",
+                "Score": 0.647171853360073,
+                "Rank": 48,
+                "Outlook": "Below Average",
+                "AnnualWages": 73080.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Editors",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "13-1161.01",
+                "Score": 0.644848148208022,
+                "Rank": 49,
+                "Outlook": "Bright",
+                "AnnualWages": 68230.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Search Marketing Strategists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-1011.00",
+                "Score": 0.64456976312282,
+                "Rank": 50,
+                "Outlook": "Average",
+                "AnnualWages": 88790.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Business Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "11-9033.00",
+                "Score": 0.64110670180147,
+                "Rank": 51,
+                "Outlook": "Average",
+                "AnnualWages": 99940.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Education Administrators, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "43-6012.00",
+                "Score": 0.640838962211242,
+                "Rank": 52,
+                "Outlook": "Below Average",
+                "AnnualWages": 48780.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Legal Secretaries and Administrative Assistants",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "13-1075.00",
+                "Score": 0.640708779497281,
+                "Rank": 53,
+                "Outlook": "Below Average",
+                "AnnualWages": 82010.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Labor Relations Specialists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-1066.00",
+                "Score": 0.640285184165895,
+                "Rank": 54,
+                "Outlook": "Bright",
+                "AnnualWages": 78810.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Psychology Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "19-3034.00",
+                "Score": 0.639933939650902,
+                "Rank": 55,
+                "Outlook": "Average",
+                "AnnualWages": 81500.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "School Psychologists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "21-2021.00",
+                "Score": 0.6397413064363419,
+                "Rank": 56,
+                "Outlook": "Average",
+                "AnnualWages": 49380.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Directors, Religious Activities and Education",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "43-4061.00",
+                "Score": 0.639491003937794,
+                "Rank": 57,
+                "Outlook": "Below Average",
+                "AnnualWages": 49230.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Eligibility Interviewers, Government Programs",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "43-9111.00",
+                "Score": 0.638754891594831,
+                "Rank": 58,
+                "Outlook": "Below Average",
+                "AnnualWages": 48880.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Statistical Assistants",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-4022.00",
+                "Score": 0.63874911924727,
+                "Rank": 59,
+                "Outlook": "Average",
+                "AnnualWages": 61660.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Librarians and Media Collections Specialists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-1111.00",
+                "Score": 0.637026413960264,
+                "Rank": 60,
+                "Outlook": "Bright",
+                "AnnualWages": 64990.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Criminal Justice and Law Enforcement Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "15-1299.03",
+                "Score": 0.6355213193721589,
+                "Rank": 61,
+                "Outlook": "Bright",
+                "AnnualWages": 98740.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Document Management Specialists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "33-9021.00",
+                "Score": 0.635263681304809,
+                "Rank": 62,
+                "Outlook": "Average",
+                "AnnualWages": 52120.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Private Detectives and Investigators",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "25-1021.00",
+                "Score": 0.634690073525086,
+                "Rank": 63,
+                "Outlook": "Average",
+                "AnnualWages": 84760.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Computer Science Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-4012.00",
+                "Score": 0.634129160419419,
+                "Rank": 64,
+                "Outlook": "Bright",
+                "AnnualWages": 60380.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Curators",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "21-1092.00",
+                "Score": 0.633998637924651,
+                "Rank": 65,
+                "Outlook": "Below Average",
+                "AnnualWages": 59860.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Probation Officers and Correctional Treatment Specialists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "27-3043.05",
+                "Score": 0.633366095535699,
+                "Rank": 66,
+                "Outlook": "Average",
+                "AnnualWages": 73150.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Poets, Lyricists and Creative Writers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "27-3023.00",
+                "Score": 0.630208048699519,
+                "Rank": 67,
+                "Outlook": "Below Average",
+                "AnnualWages": 55960.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "News Analysts, Reporters, and Journalists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "11-3121.00",
+                "Score": 0.6285622960580499,
+                "Rank": 68,
+                "Outlook": "Average",
+                "AnnualWages": 130000.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Human Resources Managers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "21-1093.00",
+                "Score": 0.62501121997185,
+                "Rank": 69,
+                "Outlook": "Bright",
+                "AnnualWages": 38520.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Social and Human Service Assistants",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "23-2011.00",
+                "Score": 0.6233270034794389,
+                "Rank": 70,
+                "Outlook": "Bright",
+                "AnnualWages": 59200.0,
+                "TypicalEducation": "Associate's degree",
+                "OccupationTitle": "Paralegals and Legal Assistants",
+                "EduCode": 4.0
+            },
+            {
+                "OnetCode": "25-4011.00",
+                "Score": 0.6214929715947911,
+                "Rank": 71,
+                "Outlook": "Bright",
+                "AnnualWages": 58640.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Archivists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "25-4031.00",
+                "Score": 0.619881051254025,
+                "Rank": 72,
+                "Outlook": "Below Average",
+                "AnnualWages": 37600.0,
+                "TypicalEducation": "Postsecondary non-degree award",
+                "OccupationTitle": "Library Technicians",
+                "EduCode": 6.0
+            },
+            {
+                "OnetCode": "19-4061.00",
+                "Score": 0.619499333698306,
+                "Rank": 73,
+                "Outlook": "Bright",
+                "AnnualWages": 50470.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Social Science Research Assistants",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-3041.00",
+                "Score": 0.618940453250906,
+                "Rank": 74,
+                "Outlook": "Bright",
+                "AnnualWages": 36680.0,
+                "TypicalEducation": "Some college, no degree",
+                "OccupationTitle": "Tutors",
+                "EduCode": 6.0
+            },
+            {
+                "OnetCode": "21-1015.00",
+                "Score": 0.618501825489916,
+                "Rank": 75,
+                "Outlook": "Bright",
+                "AnnualWages": 39990.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Rehabilitation Counselors",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "23-1022.00",
+                "Score": 0.6181554402622691,
+                "Rank": 76,
+                "Outlook": "Average",
+                "AnnualWages": 64030.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Arbitrators, Mediators, and Conciliators",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-2011.00",
+                "Score": 0.6179670332952389,
+                "Rank": 77,
+                "Outlook": "Bright",
+                "AnnualWages": 35330.0,
+                "TypicalEducation": "Associate's degree",
+                "OccupationTitle": "Preschool Teachers, Except Special Education",
+                "EduCode": 4.0
+            },
+            {
+                "OnetCode": "13-1111.00",
+                "Score": 0.615616621440323,
+                "Rank": 78,
+                "Outlook": "Bright",
+                "AnnualWages": 95290.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Management Analysts",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "29-1125.00",
+                "Score": 0.613745400813232,
+                "Rank": 79,
+                "Outlook": "Average",
+                "AnnualWages": 51330.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Recreational Therapists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "15-2051.01",
+                "Score": 0.613037886649766,
+                "Rank": 80,
+                "Outlook": "Bright",
+                "AnnualWages": 103500.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Business Intelligence Analysts",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "27-2022.00",
+                "Score": 0.6123770345482059,
+                "Rank": 81,
+                "Outlook": "Bright",
+                "AnnualWages": 44890.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Coaches and Scouts",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-2023.00",
+                "Score": 0.61220497204602,
+                "Rank": 82,
+                "Outlook": "Below Average",
+                "AnnualWages": 62630.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Career/Technical Education Teachers, Middle School",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-2022.00",
+                "Score": 0.612188877393986,
+                "Rank": 83,
+                "Outlook": "Average",
+                "AnnualWages": 61810.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Middle School Teachers, Except Special and Career/Technical Education",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "13-1041.00",
+                "Score": 0.6110657043431771,
+                "Rank": 84,
+                "Outlook": "Average",
+                "AnnualWages": 71690.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Compliance Officers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "33-1011.00",
+                "Score": 0.610494841386005,
+                "Rank": 85,
+                "Outlook": "Below Average",
+                "AnnualWages": 63310.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "First-Line Supervisors of Correctional Officers",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "21-1094.00",
+                "Score": 0.610078992686592,
+                "Rank": 86,
+                "Outlook": "Bright",
+                "AnnualWages": 46190.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Community Health Workers",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "13-1071.00",
+                "Score": 0.610030947489493,
+                "Rank": 87,
+                "Outlook": "Bright",
+                "AnnualWages": 64240.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Human Resources Specialists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "27-3031.00",
+                "Score": 0.6095224369876809,
+                "Rank": 88,
+                "Outlook": "Bright",
+                "AnnualWages": 67440.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Public Relations Specialists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "43-9081.00",
+                "Score": 0.607989043005667,
+                "Rank": 89,
+                "Outlook": "Below Average",
+                "AnnualWages": 45410.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Proofreaders and Copy Markers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "11-9151.00",
+                "Score": 0.60753887946021,
+                "Rank": 90,
+                "Outlook": "Bright",
+                "AnnualWages": 74240.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Social and Community Service Managers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "15-1211.01",
+                "Score": 0.606744152010103,
+                "Rank": 91,
+                "Outlook": "Bright",
+                "AnnualWages": 102240.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Health Informatics Specialists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-2032.00",
+                "Score": 0.6050672214699601,
+                "Rank": 92,
+                "Outlook": "Below Average",
+                "AnnualWages": 62500.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Career/Technical Education Teachers, Secondary School",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "21-2011.00",
+                "Score": 0.600041549278173,
+                "Rank": 93,
+                "Outlook": "Average",
+                "AnnualWages": 55550.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Clergy",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "23-1021.00",
+                "Score": 0.5995202661457251,
+                "Rank": 94,
+                "Outlook": "Below Average",
+                "AnnualWages": 94990.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Administrative Law Judges, Adjudicators, and Hearing Officers",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "19-3011.00",
+                "Score": 0.598959277962783,
+                "Rank": 95,
+                "Outlook": "Average",
+                "AnnualWages": 113940.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Economists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "29-1127.00",
+                "Score": 0.598242120015147,
+                "Rank": 96,
+                "Outlook": "Bright",
+                "AnnualWages": 84140.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Speech-Language Pathologists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "43-4181.00",
+                "Score": 0.597129462109144,
+                "Rank": 97,
+                "Outlook": "Average",
+                "AnnualWages": 39160.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Reservation and Transportation Ticket Agents and Travel Clerks",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "19-3033.00",
+                "Score": 0.5968371868206669,
+                "Rank": 98,
+                "Outlook": "Bright",
+                "AnnualWages": 90130.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Clinical and Counseling Psychologists",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "17-2112.01",
+                "Score": 0.596807890563683,
+                "Rank": 99,
+                "Outlook": "Bright",
+                "AnnualWages": 96350.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Human Factors Engineers and Ergonomists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "11-9032.00",
+                "Score": 0.596783234405005,
+                "Rank": 100,
+                "Outlook": "Average",
+                "AnnualWages": 101320.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Education Administrators, Kindergarten through Secondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "13-1161.00",
+                "Score": 0.5951239815925969,
+                "Rank": 101,
+                "Outlook": "Bright",
+                "AnnualWages": 68230.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Market Research Analysts and Marketing Specialists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "39-9032.00",
+                "Score": 0.5947927423414361,
+                "Rank": 102,
+                "Outlook": "Bright",
+                "AnnualWages": 31680.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Recreation Workers",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "29-2099.08",
+                "Score": 0.5936498449602731,
+                "Rank": 103,
+                "Outlook": "Average",
+                "AnnualWages": 44990.0,
+                "TypicalEducation": "Postsecondary non-degree award",
+                "OccupationTitle": "Patient Representatives",
+                "EduCode": 6.0
+            },
+            {
+                "OnetCode": "13-1141.00",
+                "Score": 0.593559482167232,
+                "Rank": 104,
+                "Outlook": "Average",
+                "AnnualWages": 67780.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Compensation, Benefits, and Job Analysis Specialists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "33-9099.02",
+                "Score": 0.593474034306828,
+                "Rank": 105,
+                "Outlook": "Average",
+                "AnnualWages": 36460.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Retail Loss Prevention Specialists",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "43-4161.00",
+                "Score": 0.589786176840821,
+                "Rank": 106,
+                "Outlook": "Below Average",
+                "AnnualWages": 45930.0,
+                "TypicalEducation": "Associate's degree",
+                "OccupationTitle": "Human Resources Assistants, Except Payroll and Timekeeping",
+                "EduCode": 4.0
+            },
+            {
+                "OnetCode": "27-3043.00",
+                "Score": 0.589751411006928,
+                "Rank": 107,
+                "Outlook": "Average",
+                "AnnualWages": 73150.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Writers and Authors",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "15-1243.00",
+                "Score": 0.589727911424615,
+                "Rank": 108,
+                "Outlook": "Bright",
+                "AnnualWages": 134870.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Database Architects",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "13-1199.04",
+                "Score": 0.588841680158242,
+                "Rank": 109,
+                "Outlook": "Bright",
+                "AnnualWages": 75990.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Business Continuity Planners",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "39-9041.00",
+                "Score": 0.588069683441654,
+                "Rank": 110,
+                "Outlook": "Bright",
+                "AnnualWages": 35720.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Residential Advisors",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "11-3111.00",
+                "Score": 0.586759482614583,
+                "Rank": 111,
+                "Outlook": "Below Average",
+                "AnnualWages": 131280.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Compensation and Benefits Managers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "19-3093.00",
+                "Score": 0.586399714913774,
+                "Rank": 112,
+                "Outlook": "Average",
+                "AnnualWages": 64540.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Historians",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "43-4011.00",
+                "Score": 0.5857679103677579,
+                "Rank": 113,
+                "Outlook": "Below Average",
+                "AnnualWages": 54680.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Brokerage Clerks",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "43-9021.00",
+                "Score": 0.585727815877082,
+                "Rank": 114,
+                "Outlook": "Below Average",
+                "AnnualWages": 36190.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Data Entry Keyers",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "21-1011.00",
+                "Score": 0.585277388354861,
+                "Rank": 115,
+                "Outlook": "Bright",
+                "AnnualWages": 49710.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Substance Abuse and Behavioral Disorder Counselors",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "33-3051.04",
+                "Score": 0.584455817918976,
+                "Rank": 116,
+                "Outlook": "Below Average",
+                "AnnualWages": 65790.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Customs and Border Protection Officers",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "13-1081.02",
+                "Score": 0.584167710853203,
+                "Rank": 117,
+                "Outlook": "Bright",
+                "AnnualWages": 77520.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Logistics Analysts",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "43-6014.00",
+                "Score": 0.583154040239312,
+                "Rank": 118,
+                "Outlook": "Bright",
+                "AnnualWages": 41000.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Secretaries and Administrative Assistants, Except Legal, Medical, and Executive",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "23-1023.00",
+                "Score": 0.582929715212348,
+                "Rank": 119,
+                "Outlook": "Below Average",
+                "AnnualWages": 151030.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Judges, Magistrate Judges, and Magistrates",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "11-9199.08",
+                "Score": 0.581982743864707,
+                "Rank": 120,
+                "Outlook": "Bright",
+                "AnnualWages": 128620.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Loss Prevention Managers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "21-1022.00",
+                "Score": 0.5819455620312639,
+                "Rank": 121,
+                "Outlook": "Bright",
+                "AnnualWages": 60280.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Healthcare Social Workers",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "13-1041.08",
+                "Score": 0.5818786315363059,
+                "Rank": 122,
+                "Outlook": "Average",
+                "AnnualWages": 71690.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Customs Brokers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "43-9031.00",
+                "Score": 0.580678686904345,
+                "Rank": 123,
+                "Outlook": "Below Average",
+                "AnnualWages": 47910.0,
+                "TypicalEducation": "Associate's degree",
+                "OccupationTitle": "Desktop Publishers",
+                "EduCode": 4.0
+            },
+            {
+                "OnetCode": "43-3071.00",
+                "Score": 0.580161276258678,
+                "Rank": 124,
+                "Outlook": "Below Average",
+                "AnnualWages": 36380.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Tellers",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "11-9179.01",
+                "Score": 0.5794553964934309,
+                "Rank": 125,
+                "Outlook": "Bright",
+                "AnnualWages": 56090.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Fitness and Wellness Coordinators",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "43-6011.00",
+                "Score": 0.578225047168587,
+                "Rank": 126,
+                "Outlook": "Below Average",
+                "AnnualWages": 65980.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Executive Secretaries and Executive Administrative Assistants",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "23-2093.00",
+                "Score": 0.578149162644507,
+                "Rank": 127,
+                "Outlook": "Below Average",
+                "AnnualWages": 50490.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Title Examiners, Abstractors, and Searchers",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "21-1091.00",
+                "Score": 0.575409776061633,
+                "Rank": 128,
+                "Outlook": "Bright",
+                "AnnualWages": 59990.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Health Education Specialists",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "25-1121.00",
+                "Score": 0.5748762062101009,
+                "Rank": 129,
+                "Outlook": "Bright",
+                "AnnualWages": 77280.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Art, Drama, and Music Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "43-9061.00",
+                "Score": 0.5739543765759171,
+                "Rank": 130,
+                "Outlook": "Bright",
+                "AnnualWages": 38040.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Office Clerks, General",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "19-3099.01",
+                "Score": 0.57353130438753,
+                "Rank": 131,
+                "Outlook": "Below Average",
+                "AnnualWages": 88900.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Transportation Planners",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "43-4171.00",
+                "Score": 0.572794838553958,
+                "Rank": 132,
+                "Outlook": "Bright",
+                "AnnualWages": 33960.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Receptionists and Information Clerks",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "31-2011.00",
+                "Score": 0.572464825605009,
+                "Rank": 133,
+                "Outlook": "Bright",
+                "AnnualWages": 64250.0,
+                "TypicalEducation": "Associate's degree",
+                "OccupationTitle": "Occupational Therapy Assistants",
+                "EduCode": 4.0
+            },
+            {
+                "OnetCode": "41-1011.00",
+                "Score": 0.572386679565859,
+                "Rank": 134,
+                "Outlook": "Bright",
+                "AnnualWages": 45250.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "First-Line Supervisors of Retail Sales Workers",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "25-1031.00",
+                "Score": 0.570999252671117,
+                "Rank": 135,
+                "Outlook": "Bright",
+                "AnnualWages": 93220.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Architecture Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "21-1023.00",
+                "Score": 0.569013447563132,
+                "Rank": 136,
+                "Outlook": "Bright",
+                "AnnualWages": 51240.0,
+                "TypicalEducation": "Master's degree",
+                "OccupationTitle": "Mental Health and Substance Abuse Social Workers",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "43-9022.00",
+                "Score": 0.568678232021111,
+                "Rank": 137,
+                "Outlook": "Below Average",
+                "AnnualWages": 44330.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Word Processors and Typists",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "25-1072.00",
+                "Score": 0.568191292915883,
+                "Rank": 138,
+                "Outlook": "Bright",
+                "AnnualWages": 78580.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Nursing Instructors and Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "21-1014.00",
+                "Score": 0.5680753906135619,
+                "Rank": 139,
+                "Outlook": "Bright",
+                "AnnualWages": 49710.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Mental Health Counselors",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "39-6012.00",
+                "Score": 0.568048537604913,
+                "Rank": 140,
+                "Outlook": "Bright",
+                "AnnualWages": 35560.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Concierges",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "25-1043.00",
+                "Score": 0.567624907282789,
+                "Rank": 141,
+                "Outlook": "Bright",
+                "AnnualWages": 96500.0,
+                "TypicalEducation": "Doctoral or professional degree",
+                "OccupationTitle": "Forestry and Conservation Science Teachers, Postsecondary",
+                "EduCode": 2.0
+            },
+            {
+                "OnetCode": "33-3012.00",
+                "Score": 0.567233556873042,
+                "Rank": 142,
+                "Outlook": "Below Average",
+                "AnnualWages": 49610.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Correctional Officers and Jailers",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "15-2051.02",
+                "Score": 0.5671489447494091,
+                "Rank": 143,
+                "Outlook": "Bright",
+                "AnnualWages": 103500.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Clinical Data Managers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "43-1011.00",
+                "Score": 0.566613797803888,
+                "Rank": 144,
+                "Outlook": "Bright",
+                "AnnualWages": 61370.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "First-Line Supervisors of Office and Administrative Support Workers",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "11-9199.02",
+                "Score": 0.5663231228718519,
+                "Rank": 145,
+                "Outlook": "Bright",
+                "AnnualWages": 128620.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Compliance Managers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "13-1011.00",
+                "Score": 0.564568916429315,
+                "Rank": 146,
+                "Outlook": "Bright",
+                "AnnualWages": 82530.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Agents and Business Managers of Artists, Performers, and Athletes",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "33-9031.00",
+                "Score": 0.564074341598075,
+                "Rank": 147,
+                "Outlook": "Bright",
+                "AnnualWages": 35970.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Gambling Surveillance Officers and Gambling Investigators",
+                "EduCode": 7.0
+            },
+            {
+                "OnetCode": "11-2011.00",
+                "Score": 0.5636700952473691,
+                "Rank": 148,
+                "Outlook": "Average",
+                "AnnualWages": 127830.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Advertising and Promotions Managers",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "27-2012.04",
+                "Score": 0.562858926217778,
+                "Rank": 149,
+                "Outlook": "Bright",
+                "AnnualWages": 85320.0,
+                "TypicalEducation": "Bachelor's degree",
+                "OccupationTitle": "Talent Directors",
+                "EduCode": 3.0
+            },
+            {
+                "OnetCode": "33-3021.00",
+                "Score": 0.561383528150053,
+                "Rank": 150,
+                "Outlook": "Below Average",
+                "AnnualWages": 86280.0,
+                "TypicalEducation": "High school diploma or equivalent",
+                "OccupationTitle": "Detectives and Criminal Investigators",
+                "EduCode": 7.0
+            }
+        ],
+        "EduClassList": [
+            {
+                "EduCode": 3.0,
+                "EduTitle": "Bachelor's degree",
+                "Count": 62
+            },
+            {
+                "EduCode": 2.0,
+                "EduTitle": "Master's degree or higher",
+                "Count": 48
+            },
+            {
+                "EduCode": 7.0,
+                "EduTitle": "High school diploma or equivalent",
+                "Count": 32
+            },
+            {
+                "EduCode": 4.0,
+                "EduTitle": "Associate's degree",
+                "Count": 5
+            },
+            {
+                "EduCode": 6.0,
+                "EduTitle": "Some college",
+                "Count": 3
+            },
+            {
+                "EduCode": 9.0,
+                "EduTitle": "Some high school",
+                "Count": 0
+            }
+        ],
+        "RecordCount": 150,
+        "FilterValue": 0
+    }
+}
