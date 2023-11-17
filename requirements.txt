@@ -1,10 +1,6 @@
 requests 
 beautifulsoup4
-pandas 
-jupyterlab
 lxml
 flask
-openpyxl
-azure-storage-blob
 email-validator
-bs4
+pyyaml
