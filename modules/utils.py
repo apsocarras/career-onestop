@@ -13,7 +13,7 @@ from email_validator import validate_email, EmailNotValidError
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from logger import logger
+from .logger import logger
 
 #### --- For smaller or more general functions than those in funcs.py --- ####
 ## ----------------------------------------------------------------------------- ##
@@ -135,7 +135,7 @@ def get_email_address(resp:dict) -> str:
     except Exception:
         return None
 
-def check_email_address(email_address=None, check_deliverability=True) -> tuple[bool,str]:
+def check_email_address(email_address=None, check_deliverability=True) -> tuple:
     """Wrapper to validate email address"""
     if email_address is not None:
         contacted_addresses = load_contacted_email_addresses()
@@ -155,10 +155,11 @@ def check_email_address(email_address=None, check_deliverability=True) -> tuple[
 def load_processed_response_ids() -> list:
     """Load list of already processed response ids from database"""
     response_ids = []
-    with open("data/survey-responses.json", "r") as file:
-        for line in file:
-            row_data = json.loads(line.strip())
-            response_ids.append(row_data['id'])
+    # with open("data/survey-responses-store.json", "r") as file:
+    #     for line in file:
+    #         row_data = json.loads(line.strip())
+    #         response_ids.append(row_data['id'])
+
     return  response_ids
 
 def load_contacted_email_addresses():
@@ -246,6 +247,7 @@ def post_cos(processed_resp:dict, test_mode=False) -> dict:
                             headers=headers)
             if cos_response.status_code != 200:
                 logger.error(f"SM: {processed_resp['response_id']} -- POST {url} ({cos_response.status_code}) -- Setting cos_response = {{}}")
+                cos_response = {}
             else: # Unpack response
                 cos_response = cos_response.json()
 
@@ -286,7 +288,7 @@ def load_email_text():
 
     return message_text.replace('\n', '<br>')
 
-def compose_email(cos_response:dict, max_recommendations=10) -> tuple[str]:
+def compose_email(cos_response:dict, max_recommendations=10) -> tuple:
     """
     Compose the HTML-formatted text of an email given a response object from CareerOneStop
 
