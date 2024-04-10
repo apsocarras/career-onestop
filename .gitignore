@@ -3,7 +3,6 @@
 data/*
 data/manual_sm_exports
 mysite_zip.zip
-img/
 mysite
 scrap/*
 *.csv 
