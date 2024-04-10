@@ -1,7 +1,10 @@
 requests 
 beautifulsoup4
-pandas 
-jupyterlab
 lxml
 flask
-openpyxl
+email-validator
+pyyaml
+matplotlib
+scipy
+pygris
+statsmodels
