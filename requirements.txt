@@ -4,3 +4,7 @@ lxml
 flask
 email-validator
 pyyaml
+matplotlib
+scipy
+pygris
+statsmodels

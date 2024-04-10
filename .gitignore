@@ -1,10 +1,12 @@
 .gitignore
 .DS_Store
+data/*
 data/manual_sm_exports
 mysite_zip.zip
 img/
 mysite
-
+scrap/*
+*.csv 
 api-key.yaml
 venv/
 # Byte-compiled / optimized / DLL files
