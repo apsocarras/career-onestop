@@ -1,9 +1,9 @@
 import json
 import datetime as dt
 
-from logger import logger
-from utils import load_config, load_json, request, clean_field_text
-from utils import load_processed_response_ids
+from .logger import logger
+from .utils import load_config, load_json, request, clean_field_text
+from .utils import load_processed_response_ids
 
 ## --- For larger/core functions in the app  --- ##
 
@@ -29,9 +29,8 @@ def get_qa_key(api=None, fetch=False) -> dict:
 
     """
     data = load_config()
-    survey_version = data['current-sm-version']
 
-    SM_DATA = data['sm'][survey_version]
+    SM_DATA = data['sm']
     COS_DATA = data['cos']
 
     # Set SM vs. COS variables
@@ -89,8 +88,7 @@ def combine_qa_keys(fetch=False) -> dict:
         Used if when a new SurveyMonkey response is retrieved there are unexpected question ids.
 
     """
-    ## TO-DO: This function should be able to store and read specific timestamped versions of the translation map to be backwards compatible following any survey changes.
-
+    
     # GET/Load answer keys
     sm_key = get_qa_key("sm", fetch=fetch)
     cos_key = get_qa_key("cos", fetch=fetch)
@@ -210,9 +208,7 @@ def get_sm_survey_responses(per_page=100,
         survey_responses = load_json(fp)
     else:
         data = load_config()
-        survey_version = data['current-sm-version']
-
-        SM_DATA = data['sm'][survey_version]
+        SM_DATA = data['sm']
         url = SM_DATA['base_url'] + "/responses/bulk"
 
         params = {"per_page":str(per_page),
@@ -221,11 +217,13 @@ def get_sm_survey_responses(per_page=100,
                   "total_time_units":"minute",
                   "sort_by":sort_by,
                   "sort_order":sort_order}
+        
+        print(params)
 
         if isinstance(start_created_at, dt.datetime): # i.e. if not None and a valid datetime object
             try:
                 format_string = "%Y-%m-%dT%H:%M:%S+00:00"
-                date_string = start_created_at.format(format_string)
+                date_string = dt.datetime.strftime(start_created_at, format=format_string)
                 params['start_created_at'] = date_string
             except:
                 logger.warning(f"Improper datetime given for `start_created_at`. Skipping from GET {url}")
