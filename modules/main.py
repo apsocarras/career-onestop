@@ -1,9 +1,9 @@
 import json
 
-from logger import logger, log_format
-from utils import load_config, est_now
-from utils import check_unexpected_question_ids, get_email_address, check_email_address, post_cos, send_email
-from funcs import get_sm_survey_responses, combine_qa_keys, translate_sm_response
+from .logger import logger, log_format
+from .utils import load_config, est_now
+from .utils import check_unexpected_question_ids, get_email_address, check_email_address, post_cos, send_email
+from .funcs import get_sm_survey_responses, combine_qa_keys, translate_sm_response
 
 def main():
 
@@ -57,11 +57,6 @@ def main():
                                  'unexpected_questions':[unexpected_question_ids]
                                  }
                             }
-
-                ## TO-DO: If a respondent w/ failed response provided a valid email address,
-                # We can still contact them noting we will get back to them
-                # If this type of failure occurs, it's because the survey changed
-                # Need to add notification logic to ourselves
 
                 # Append to the problem responses file
                 failures.append(fail_dict)
